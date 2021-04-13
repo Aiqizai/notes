@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 图标容器 -->
+    <div id="container" style="min-width: 400;height: 400px"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+
+    <script>
+        $(function () {
+            $('#container').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Monthly Average Rainfall'
+                },
+                subtitle: {
+                    text: 'Source: WorldClimate.com'
+                },
+                xAxis: {
+                    categories: [
+                        'Jan',
+                        'Feb',
+                        'Mar',
+                        'Apr',
+                        'May',
+                        'Jun',
+                        'Jul',
+                        'Aug',
+                        'Sep',
+                        'Oct',
+                        'Nov',
+                        'Dec'
+                    ],
+                    crosshair: true,  // 随鼠标或鼠标滑过点时的十字准星线
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Rainfall (mm)'
+                    }
+                },
+                tooltip: {  // 数据提示框
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,  // 共享提示框
+                    // split: true,   // 分开提示框
+                    useHTML: true  // 是否使用html渲染
+                },
+                plotOptions: {   // 数据列配置
+                    column: {  // column 柱状图
+                        // colors: ['red', 'yellow'],
+                        colorByPoint: true  
+                        // 当使用从options.colors集合中提取的自动点颜色时，此选项确定图表是应按系列接收一种颜色还是应按点接收一种颜色(每列不一样的颜色)
+                        // 如果定义了colors数组，当colorByPoint为true就从colors中取颜色，如果没有colors就随机颜色
+                    }
+                },
+                series: [  // 展示数据 
+                    {
+                        name: 'Tokyo',
+                        //colorByPoint:true,  或者直接写在这里
+                        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+                    },
+                    {
+                        name: 'Amercan',
+                        data: [48, 46.5, 41, 105.5, 65.6, 86.2, 36.5, 15.6, 78.5, 165.8, 89.9, 78.9]
+                    }
+                ]
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type='text/css'>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #wrap {
+            width: 500px;
+            height: 360px;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        #pic {
+            width: 500px;
+            height: 360px;
+            position: relative;
+        }
+
+        #pic img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+
+        #tab {
+            width: 105px;
+            height: 10px;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            margin-left: -50px;
+        }
+
+        #tab ul li {
+            width: 10px;
+            height: 10px;
+            margin: 0 5px;
+            background: #bbb;
+            border-radius: 100%;
+            cursor: pointer;
+            list-style: none;
+            float: left;
+        }
+
+        #tab ul li.on {
+            background: #f60;
+        }
+
+        #btn div {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 50%;
+            margin-top: -20px;
+            color: #fff;
+            background: #999;
+            background: rgba(0, 0, 0, .5);
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'Microsoft yahei';
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        #btn div#left {
+            left: 0;
+        }
+
+        #btn div#right {
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="pic">
+            <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2853553659,1775735885&fm=26&gp=0.jpg" alt="" />
+            <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2853553659,1775735885&fm=26&gp=0.jpg" alt="" />
+            <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1089874897,1268118658&fm=26&gp=0.jpg" alt="" />
+            <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=121352583,3553479540&fm=26&gp=0.jpg" alt="" />
+        </div>
+        <div id="tab">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <div id="btn">
+            <div id='left'>
+                <</div> <div id='right'>>
+            </div>
+        </div>
+    </div>
+    <script>
+        var oWrap = document.getElementById('wrap')
+        var picImg = document.getElementById('pic').getElementsByTagName('img');
+        var tabLi = document.getElementById('tab').getElementsByTagName('li');
+        var btnDiv = document.getElementById('btn').getElementsByTagName('div');
+
+        function Banner(oWrap, picImg, tabLi, btnDiv) {
+            this.wrap = oWrap
+            this.list = picImg
+            this.tab = tabLi
+            this.btn = btnDiv
+            this.index = 0; //这些都必须是私有的，不然两个banner会一样
+
+            this.timer = null;
+            this.length = this.tab.length;
+
+            // this.init();//下面创建好，要在这里执行
+
+        }
+
+        //初始化分类
+        Banner.prototype.init = function () { //先把下面的分类
+            var This = this; //var 一个This变量把this存起来
+            this.list[0].style.display = 'block';
+            this.tab[0].className = 'on';
+
+            for (var i = 0; i < this.length; i++) {
+                this.tab[i].index = i;
+                this.tab[i].onclick = function () {
+                    //this.list[index].style.display='none'; 这里的this指向tab的this 
+                    This.list[This.index].style.display = 'none';
+                    This.tab[This.index].className = '';
+                    //index=this.index;
+                    This.index = this.index;
+                    This.list[This.index].style.display = 'block';
+                    //This.tab[This.index].className='on'; 
+                    this.className = 'on';
+                }
+            };
+
+            for (var i = 0; i < this.btn.length; i++) {
+                this.btn[i].index = i;
+                this.btn[i].onselectstart = function () {
+                    return false;
+                }
+                this.btn[i].onclick = function () {
+                    This.list[This.index].style.display = 'none';
+                    This.tab[This.index].className = '';
+                    if (this.index) {
+                        This.index++;
+                        This.index %= This.length;
+                    } else {
+                        This.index--;
+                        if (index < 0) This.index = This.length - 1;
+                    }
+                    This.list[This.index].style.display = 'block';
+                    This.tab[This.index].className = 'on';
+                }
+            }  
+            this.auto(); 
+            this.clear();
+        };
+        Banner.prototype.auto = function () {
+            var This = this;
+            This.timer = setInterval(function () { //一般都是向左轮播,index++
+                This.list[This.index].style.display = 'none';
+                This.tab[This.index].className = '';
+                This.index++;
+                This.index %= This.length;
+                This.list[This.index].style.display = 'block';
+                This.tab[This.index].className = 'on';
+            }, 2000)
+        };
+
+        Banner.prototype.clear = function () {
+            var This = this;
+            this.wrap.onmouseover = function () {
+                clearInterval(This.timer)
+            }
+            this.wrap.onmouseleave = function () {
+                This.auto();
+            }
+        };
+
+
+        var banner1 = new Banner(oWrap, picImg, tabLi, btnDiv);
+        banner1.init();
+
+        /*
+         * init()
+         * function init(){
+         for(var i=0;i<tabLi.length;i++){
+          tabLi[i].index=i; 
+          tabLi[i].onclick=function(){
+           picImg[index].style.display='none'; 
+           tabLi[index].className='';
+           index=this.index;
+           picImg[index].style.display='block';
+           tabLi[index].className='on'; 
+          }    
+         };
+         
+         
+         }
+         for(var i=0;i<btnDiv.length;i++){
+          btnDiv[i].index=i;
+          btnDiv[i].onselectstart=function(){ 
+           return false;
+          }
+          btnDiv[i].onclick=function(){
+           picImg[index].style.display='none'; 
+           tabLi[index].className='';
+           if(this.index){
+            index++;
+            index%=tabLi.length;
+           }else{
+            index--;
+            if(index<0)index=tabLi.length-1;     
+           }  
+           picImg[index].style.display='block';
+           tabLi[index].className='on';
+          }    
+         };
+         auto();
+         oWrap.onmouseover=function(){
+          clearInterval(timer)
+         }
+         oWrap.onmouseleave=function(){
+          auto();
+         }
+         function auto(){
+          timer=setInterval(function(){ //一般都是向左轮播,index++
+            picImg[index].style.display='none';
+            tabLi[index].className='';
+            index++;
+            index%=tabLi.length;
+            picImg[index].style.display='block';
+            tabLi[index].className='on';
+          },2000)
+         };
+         
+         */
+    </script>
+</body>
+
+</html>

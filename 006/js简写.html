@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1、多值匹配
+
+    //普通写法 
+    if (value === 1 || value === 'one' || value === 2 || value === 'two') {
+      // Execute some code 
+    }
+
+    //简写 1
+    if ([1, 'one', 2, 'two'].indexOf(value) >= 0) {
+      // Execute some code 
+    }
+
+    //简写 2
+    if ([1, 'one', 2, 'two'].includes(value)) { // 包含则返回 true，否则返回false。
+      // Execute some code 
+    }
+
+    // ['Allegro','Lazada','Mercado'].includes(currentPlatForm)
+
+    // 2、字符串转数字
+
+    //普通写法 
+    let total = parseInt('453');
+    let average = parseFloat('42.6');
+
+    //简写 
+    let total = +'453';
+    let average = +'42.6';
+
+    // 3、多次重复一个字符串
+
+    //普通写法 
+    let str = '';
+    for (let i = 0; i < 5; i++) {
+      str += 'Hello ';
+    }
+    console.log(str); // Hello Hello Hello Hello Hello 
+
+    //简写 
+    'Hello '.repeat(5); // 想要换行只需加换行符即可(helle\n)
+
+    // 4、查找数组中的最大和最小数
+
+    // 我们可以使用for循环遍历数组的每个值并找到最大值或最小值。我们也可以使用Array.reduce()方法在数组中找到最大和最小数。
+    //简写 
+    const arr = [2, 8, 15, 4];
+    Math.max(...arr); // 15 
+    Math.min(...arr); // 2
+
+    // 5、Array.find
+
+    // 前
+    const pets = [
+      {type: 'Dog', name: 'Max'},
+      {type: 'Cat', name: 'Karl'},
+      {type: 'Dog', name: 'Tommy'}
+    ]
+
+    function findDog(name) {
+      for(let i = 0; i < pets.length; ++i) {
+        if(pets[i].type === 'Dog' && pets[i].name === name) {
+          return pets[i]
+        }
+      }
+    }
+
+    let dog1 = findDog('Max');
+    console.log('dog1 ==> ', dog1);
+
+    // 后
+    dog2 = pets.find(pet => pet.type === 'Dog' && pet.name === 'Tommy');
+    console.log('dog2 ==> ', dog2);
+
+    // 6、
+
+  </script>
+</body>
+
+</html>

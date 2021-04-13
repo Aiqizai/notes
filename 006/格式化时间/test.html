@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./date.js"></script>
+  <script>
+    let date = new Date();
+    let res = formatDate(date,'yyyy++MM++dd hh:mm:ss')
+    let res1 = formatDate(date,'yyyy++MM++dd')
+    console.log('formatDate res ==> ', res);
+    console.log('formatDate res1 ==> ', res1);
+    console.log(date.getDate());
+  </script>
+</body>
+</html>

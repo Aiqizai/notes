@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+    //-----------------------------  Set
+
+        /*
+
+            let set / map = new Set() / new Map()
+            .size   // 返回结构成员的总数
+            .add()  // 结构中添加成员，返回set结构
+            .has()  // 结构中是否拥有该成员（是否为结构中的成员），返回boolean
+
+        */ 
+
+        // 1、ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。
+
+        let arr1 = [2, 3, 4, 4, 5, 3, 2, 11, 1];
+
+        let s1 = new Set();
+
+        arr1.forEach(item => {
+            // 通过add()方法向 Set 结构加入成员
+            s1.add(item)
+        })
+
+        console.log('s1 ==> ', s1);
+
+        // 2、Set函数可以接受一个数组（或者具有 iterable 接口的其他数据结构）作为参数，用来初始化。
+        // 例一   (数组去重) 
+        const set = new Set([1, 2, 3, 4, 4]);
+        [...set] // [1, 2, 3, 4]
+
+        // 例二
+        const items = new Set([1, 2, 3, 4, 5, 5, 5, 5]);
+        items.size // 5
+
+        // （去除字符串里面的重复字符）  
+        let resStr = [...new Set('ababbc')].join('')
+        console.log('resStr ==> ', resStr);  // "abc"
+
+
+    //-----------------------------  Map
+        // 1、如果对同一个键多次赋值，后面的值将覆盖前面的值。 
+        let map1 = new Map();
+
+        map1
+        .set(1, 'aaa')
+        .set(1, 'bbb');
+
+        map1.get(1) // "bbb"
+
+        // ★★ 2、Map 结构转为数组结构，比较快速的方法是使用扩展运算符（...）
+        const map = new Map([
+            [1, 'one'],
+            [2, 'two'],
+            [3, 'three'],
+        ]);
+
+        [...map.keys()];
+        // [1, 2, 3]
+
+        [...map.values()];
+        // ['one', 'two', 'three']
+
+        [...map.entries()];
+        // [[1,'one'], [2, 'two'], [3, 'three']]  
+
+        [...map]
+        // [[1,'one'], [2, 'two'], [3, 'three']]
+        
+        
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            1、作用域
+            2、IIFE  立即执行函数表达式
+            3、vue 插槽 
+        */
+        var a = 2;
+
+        function foo(a) {
+            console.log(a);
+        }
+        foo(2)
+
+        var foo = true,
+            baz = 10;
+        if (foo) {
+            let bar = 3;
+            if (baz > bar) { // 移动代码时不要忘了 bar!
+                console.log(baz);
+            }
+        }
+    </script>
+</body>
+
+</html>

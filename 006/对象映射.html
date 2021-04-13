@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [
+            {
+                id: '001',
+                staff: '张三'
+            },
+            {
+                id: '002',
+                staff: '李四'
+            },
+            {
+                id: '003',
+                staff: '王五'
+            },
+        ]
+
+        let arr1 = [
+            {
+                id: '001',
+                staff: '张三'
+            },
+            {
+                id: '002',
+                staff: '李四'
+            },
+            {
+                id: '003',
+                staff: '王五'
+            },
+        ]
+
+        console.log(arr,'前');
+
+        // 方法一  返回原数组，只改变对象里的键名
+        let keyMap = {
+            id: 'idNumber',
+            staff: 'name'
+        }
+        for(let i = 0; i < arr.length; i++) {
+            let obj = arr[i];
+            for(let key in obj) {
+                let newKey = keyMap[key];  // name
+                if(newKey) {
+                    obj[newKey] = obj[key] // 键名互换
+                    delete obj[key]  // 删除原本键值对   
+                }
+            }
+        }
+
+        console.log(arr,'后1');
+
+        // 方法二  es6的map, 返回新数组，只含这个对象的属性的数组  
+        let result = arr1.map(item => {
+            return {
+                idNumber: item.id,
+                name: item.staff 
+            }
+        })
+
+        console.log(result, '后2');
+
+    </script>
+</body>
+</html>

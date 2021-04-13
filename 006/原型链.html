@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <div class="child">我是子元素</div>
+    <button>移除</button>
+  </div>
+
+  <script>
+    let btn = document.querySelector('button');
+    let child = document.querySelector('.child');
+    let root = document.querySelector('#root');
+
+    btn.addEventListener('click', function () {
+      root.removeChild(child);
+    })
+
+
+    // -------------------------------
+
+    function Person() {}  // 构造函数
+
+    // 每一个构造函数都有一个prototype对象，每个prototype对象(实例对象)都有一个__proto__
+
+    Person.prototype.eat = function () {  // 原型上的方法
+      console.log("吃东西");
+    };
+
+
+    var per = new Person();   // 实例对象
+    console.dir(per);   // console.dir()显示一个对象所有的属性和方法。
+    console.dir(Person);
+    console.dir(Object);
+    //实例对象中有__proto__原型
+    //构造函数中有prototype原型
+
+    console.log(__proto__,prototype);
+
+    //prototype是对象
+    //所以,prototype这个对象中也有__proto__,那么指向了哪里
+    //实例对象中的__proto__指向的是构造函数的prototype
+    //所以,prototype这个对象中__proto__指向的应该是某个构造函数的原型prototype
+
+    //Person的prototype中的__proto__的指向
+    //console.log(Person.prototype.__proto__);
+    //per实例对象的__proto__------->Person.prototype的__proto__---->Object.prototype的__proto__是null
+    console.log(per.__proto__ == Person.prototype); //true
+    console.log(per.__proto__.__proto__ == Person.prototype.__proto__); //true 
+    console.log(Person.prototype.__proto__ == Object.prototype); //true 
+    console.log(Object.prototype.__proto__); //null
+  </script>
+</body>
+
+</html>

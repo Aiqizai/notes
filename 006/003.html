@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let str = "{\"type\":\"xxxx\",\"productName\":\"sss\",\"productNumber\":\"ddd\",\"productRemark\":\"eee\",\"spec\":\"yyy\"},{\"type\":\"type\",\"productName\":\"productName\",\"productNumber\":\"productNumber\",\"productRemark\":\"productNumber\",\"spec\":\"spec\"},{\"type\":\"type\",\"productName\":\"productName\",\"productNumber\":\"productNumber\",\"productRemark\":\"productNumber\",\"spec\":\"spec\"},{\"type\":\"type\",\"productName\":\"productName\",\"productNumber\":\"productNumber\",\"productRemark\":\"productNumber\",\"spec\":\"spec\"}";
+    let res = str.replace(/'\'/,'');
+    let productList = [res]
+    console.log(res);
+    console.log("productList ==> ", productList);
+  </script>
+</body>
+</html>

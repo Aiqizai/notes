@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container" style="min-width: 400px;height: 400px;"></div>
+
+    <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <script>
+        console.log(Highcharts);
+        Highcharts.chart('container', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+            },
+            title: {
+                text: '2018年1月浏览器市场份额'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}</b>' // 数据点格式化字符串
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true, // 是否允许选中点
+                    cursor: 'pointer',
+                    // dataLabels: {  // 数据标签
+                    //     enabled: true,
+                    //     format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    //     style: {
+                    //         color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    //     }
+                    // },
+                    dataLabels: {  // 数据标签 
+                        enabled: false,
+                    },
+                    showInLegend: true  // 是在图例中显示此特定系列还是系列类型（可以点击显示哪一类型）
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'Chrome',
+                    y: 61.41,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Internet Explorer',
+                    y: 11.84
+                }, {
+                    name: 'Firefox',
+                    y: 10.85
+                }, {
+                    name: 'Edge',
+                    y: 4.67
+                }, {
+                    name: 'Safari',
+                    y: 4.18
+                }, {
+                    name: 'Sogou Explorer',
+                    y: 1.64
+                }, {
+                    name: 'Opera',
+                    y: 1.6
+                }, {
+                    name: 'QQ',
+                    y: 1.2
+                }, {
+                    name: 'Other',
+                    y: 2.61
+                }]
+            }]
+        })
+    </script>
+</body>
+
+</html>
