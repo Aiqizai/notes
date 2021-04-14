@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1. 字符串和数字之间的相等比较
+
+    // 我们沿用本章前面字符串和数字的例子来解释 == 中的强制类型转换：
+    var a = 42;
+    var b = "42";
+    a === b; // false
+    a == b; // true
+    
+    // 因为没有强制类型转换， 所以 a === b 为 false， 42 和 "42" 不相等。
+    // 而 a == b 是宽松相等， 即如果两个值的类型不同， 则对其中之一或两者都进行强制类型转换。
+    // 具体怎么转换？ 是 a 从 42 转换为字符串， 还是 b 从 "42" 转换为数字？
+
+    // ES5 规范 11.9 .3 .4 - 5 这样定义：
+    //  (1) 如果 Type(x) 是数字， Type(y) 是字符串， 则返回 x == ToNumber(y) 的结果。
+    // (2) 如果 Type(x) 是字符串， Type(y) 是数字， 则返回 ToNumber(x) == y 的结果。
+
+    // 规范使用 Number 和 String 来代表数字和字符串类型， 而本书使用的是数字（ number） 和字符串（ string）。 切勿将规范中的 Number 和原生函数 Number()
+    // 混为一谈。 本书中类型名的首字符大写和小写是一回事。
+    // 根据规范， "42"
+    // 应该被强制类型转换为数字以便进行相等比较。 相关规则， 特别是
+    // ToNumber 抽象操作的规则前面已经介绍过。 本例中两个值相等， 均为 42。
+  </script>
+</body>
+
+</html>

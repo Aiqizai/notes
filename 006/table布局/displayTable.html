@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      margin-left: -30px;  /* 去除间距之后产生的左右margin */
+      margin-right: -30px;
+    }
+
+    main {
+      width: 100%;
+      display: table;
+      border-spacing: 30px 0;
+      /* 间距 */
+    }
+
+    main>div {
+      background: chartreuse;
+      border: 1px solid;
+      display: table-cell;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- display:table实现多列等高布局 -->
+  <div class="container">
+    <main>
+      <div style="height: 200px;"></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </main>
+  </div>
+</body>
+
+</html>
