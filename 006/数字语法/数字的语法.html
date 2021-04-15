@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // JavaScript 中的数字常量一般用十进制表示。 例如：
+    var a = 42;
+    var b = 42.3;
+
+    // 数字前面的 0 可以省略：
+    var a = 0.42;
+    var b = .42;
+
+    // 小数点后小数部分最后面的 0 也可以省略：
+    var a = 42.0;
+    var b = 42.;
+
+    // 默认情况下大部分数字都以十进制显示， 小数部分最后面的 0 被省略， 如：
+    var a = 42.300;
+    var b = 42.0;
+    a; // 42.3
+    b; // 42
+
+    // 特别大和特别小的数字默认用指数格式显示， 与 toExponential() 函数的输出结果相同。例如：
+    var a = 5E10;
+    a; // 50000000000
+    a.toExponential(); // "5e+10"
+
+    var b = a * a;
+    b; // 2.5e+21
+    var c = 1 / a;
+    c; // 2e-11
+
+    // 由于数字值可以使用 Number 对象进行封装，因此数字值可以调用 Number.prototype 中的方法（参见第 3 章）。
+    // 例如，tofixed(..) 方法可指定小数部分的显示位数：
+    var a = 42.59;
+    a.toFixed(0); // "43"
+    a.toFixed(1); // "42.6"
+    a.toFixed(2); // "42.59"
+    a.toFixed(3); // "42.590"
+    a.toFixed(4); // "42.5900"
+
+
+    // 请注意， 上例中的输出结果实际上是给定数字的字符串形式， 如果指定的小数部分的显示
+    // 位数多于实际位数就用 0 补齐。
+    // toPrecision(..) 方法用来指定有效数位的显示位数：
+    var a = 42.59;
+    a.toPrecision(1); // "4e+1"
+    a.toPrecision(2); // "43"
+    a.toPrecision(3); // "42.6"
+    a.toPrecision(4); // "42.59"
+    a.toPrecision(5); // "42.590"
+    a.toPrecision(6); // "42.5900"
+    // 上面的方法不仅适用于数字变量， 也适用于数字常量。 不过对于.运算符需要给予特别注
+    // 意， 因为它是一个有效的数字字符， 会被优先识别为数字常量的一部分， 然后才是对象属
+    // 性访问运算符。
+    // 无效语法：
+    // 42. toFixed(3); // SyntaxError
+    // 下面的语法都有效：
+    (42).toFixed(3); // "42.000"
+    0.42.toFixed(3); // "0.420"
+    42..toFixed(3); // "42.000"
+    // 42. tofixed(3) // 是无效语法， 因为.被视为常量 42. 的一部分（ 如前所述）， 所以没有.属
+    // 性访问运算符来调用 tofixed 方法。
+    42..tofixed(3) // 则没有问题， 因为第一个.被视为 number 的一部分， 第二个.是属性访问
+    // 运算符。 只是这样看着奇怪， 实际情况中也很少见。 在基本类型值上直接调用的方法并不
+    // 多见， 不过这并不代表不好或不对。
+  </script>
+</body>
+
+</html>

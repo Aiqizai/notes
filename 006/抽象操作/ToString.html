@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 抽象操作 ToString，它负责处理非字符串到字符串的强制类型转换。
+
+    //  1、对普通对象来说，除非自行定义，否则 toString()（Object.prototype.toString()）返回
+    // 内部属性 [[Class]] 的值，如 "[object Object]"。
+    let obj = {
+      a: 'aa',
+      b: 'bb'
+    }
+    obj.toString() // "[object Object]"
+
+    // 2、数组的默认 toString() 方法经过了重新定义，将所有单元字符串化以后再用 "," 连接起来：
+    let a = [1, 2, 3];
+    a.toString(); // "1,2,3"   或者使用join(',')也可以达到 "1,2,3"的效果
+    // toString() 可以被显式调用，或者在需要字符串化时自动调用
+
+    // 3、JSON 字符串化
+    // 对大多数简单值来说，JSON 字符串化和 toString() 的效果基本相同，只不过序列化的结果总是字符串：
+    JSON.stringify(42); // "42"
+    JSON.stringify("42"); // ""42"" （含有双引号的字符串）
+    JSON.stringify(null); // "null"
+    JSON.stringify(true); // "true"
+    
+  </script>
+</body>
+
+</html>
