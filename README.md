@@ -26,4 +26,6 @@
 
 7、TypeScript基础
 
+8、ts泛型,Object.defineProperty
+
 ```
