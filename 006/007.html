@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var lengthOfLongestSubstring = function (s) {  // abcabcbb
+      let str = s[0]; // a
+      let max = 1;
+      if (s == '') {
+        return 0;
+      }
+      for (let i = 1; i < s.length; i++) {  
+        console.log(str.indexOf(s[i]),'++++');
+        if (str.indexOf(s[i]) != -1) {  // s[1] b  indexOf 返回字符串首次出现的位置(下标)
+          str = str.slice(str.indexOf(s[i]) + 1);
+          console.log(str);
+        }
+        str += s[i]; // abc.slice() 
+        console.log(str,'后');
+        if (max < str.length) {
+          max = str.length;
+        }
+      }
+      return max;
+    };
+    console.log(lengthOfLongestSubstring('abcabcbb'));
+  </script>
+</body>
+
+</html>
