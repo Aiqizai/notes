@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      Object.keys()用于获得由对象属性名组成的数组，可与数组遍历相结合使用，非常好用。和for...in方法功能类似，但有使用区别！
+
+      数组遍历可以用for()或forEach()来实现，forEach()方法是ECMAScript5定义的遍历数组的一个新方法，按照索引的顺序挨个传递给定义的函数；
+
+      接下来就Object.keys()分别结合for()和forEach()使用进行运用
+    
+    */
+      let person = {
+        name: 'Jack',
+        age: 18,
+        school: 'ABC University',
+        home: 'China'
+      }
+
+      // console.log(Object.keys(person)); ["name", "age", "school", "home"]
+
+      // 用forEach()遍历
+      let keys = Object.keys(person).forEach(item => {
+        console.log(item, ':', person[item]);
+      })
+  </script>
+</body>
+
+</html>

@@ -29,4 +29,6 @@
 8、ts泛型,Object.defineProperty
 
 9、格式化数字（数字转中文大写）, 检查字符串是否相等
+
+10、生成二维数组, 优化if/switch写法, Object.keys()
 ```

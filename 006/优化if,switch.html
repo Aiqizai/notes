@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let code; // code有多个值 1 2 3 4 5, 分别做不一样的事情
+
+    // 常见 if 写法, 看起来密密麻麻，简直让人头皮发麻
+    if (code === 1) {
+      TodoA();
+    } else if (code === 2) {
+      TodoB();
+    } else if (code === 3) {
+      TodoC();
+    } else if (code === 4) {
+      TodoD();
+    } else if (code === 5) {
+      TodoE();
+    }
+
+    // switch 优化一下, 这样的代码本身也没什么，只是可读性差一些，看起来有点费劲
+    switch (code) {
+      case 1:
+        TodoA();
+        break;
+      case 2:
+        TodoB();
+        break;
+      case 3:
+        TodoC();
+        break;
+      case 4:
+        TodoD();
+        break;
+      case 5:
+        TodoE();
+        break;
+
+      default:
+        break;
+    }
+
+    // 最后的最后,巧用对象来“优雅”解决这一长串代码
+    const codeNum = {
+      1: TodoA,
+      2: TodoB,
+      3: TodoC,
+      4: TodoD,
+      5: TodoE,
+    }
+    if (codeNum[code]) {
+      codeNum[code]();
+    }
+
+    // 看看这代码，简直不要太简洁，又可以舒舒服服躺着摸鱼了
+  </script>
+</body>
+
+</html>

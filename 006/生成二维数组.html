@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+     // 遇到重置二维数组的每项为空，其实生成一个新的二维数组也可。
+
+     function create2DimArr(outerLen, innerLen) {
+        //  outerLen 一维数组长度
+        //  innerLen 二维数组长度
+        let res = [];
+        for(let i = 0; i < outerLen; i += 1) {
+          res.push(new Array(innerLen).fill(''));
+        }
+        return res;
+     }
+     console.log(create2DimArr(3, 4));
+
+
+
+     function otherCreate2DimArr(lv1Len, lv2Len, lv2default) {
+        return Array(lv1Len).fill(Array(lv2Len).fill(lv2default))
+     }
+     console.log(otherCreate2DimArr(10, 5, ''));
+  </script>
+</body>
+</html>
