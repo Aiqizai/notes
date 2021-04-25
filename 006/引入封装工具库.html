@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // utils.js
+    export const getLocal = (name) => {
+      return localStorage.getItem(name)
+    }
+
+    // vue文件中引用
+    import { getLocal } from 'utils文件路径'
+    // 使用
+    getLocal('token')
+  </script>
+</body>
+
+</html>
