@@ -1,0 +1,287 @@
+columns = {
+  /*
+  *   利润统计表头数据
+  *
+  *   参数说明：
+  *       field: 参数字段
+  *       title: 表头文字
+  *       align: 文字是否居中
+  *       key: 保证table每列都是唯一的
+  *       fixed: 是否为固定列
+  *       color: 是否添加颜色
+  *       width: 列宽
+  *       tooltip: 悬浮提示
+  * */
+  Aliexpress: [
+      {field: 'shopNumber', title: '店铺序号', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'shopName', title: '店铺名称', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'staffName', title: '负责人', align: 'center', key: Math.random(), fixed: true},
+      {field: 'sumTime', title: '统计年月', align: 'center', key: Math.random(), fixed: true},
+      {field: 'orderTotal', title: '店铺成交总额$', align: 'center', key: Math.random()},
+      {field: 'refundTotal', title: '店铺退款总额$', align: 'center', key: Math.random(), color: true},
+      {field: 'realShopTotal', title: '实际成交总额$', align: 'center', key: Math.random()},
+      {field: 'refundRatio', title: '退款率', align: 'center', key: Math.random(), color: true},
+      {field: 'purchaseCost', title: '货物成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'shipping', title: '运费$', align: 'center', key: Math.random(), color: true},
+      {field: 'packageFee', title: '包装材料费$', align: 'center', key: Math.random(), color: true},
+      {field: 'afflicateFee', title: '联盟佣金', align: 'center', key: Math.random()},
+      {field: 'commissionFee', title: '佣金$', align: 'center', key: Math.random(), color: true},
+      {field: 'brushOrderCost', title: '刷单费用', align: 'center', key: Math.random()},
+      {field: 'brushOrderFee', title: '刷单佣金', align: 'center', key: Math.random()},
+      {field: 'brushOrderCount', title: '刷单订单个数', align: 'center', key: Math.random()},
+      {field: 'manualProcessFee', title: '人工处理费', align: 'center', key: Math.random(), color: true},
+      {field: 'refundCost', title: '退款成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'shopProfit', title: '店铺总利润$', align: 'center', key: Math.random()},
+      {field: 'profitRatio', title: '店铺利润率', align: 'center', key: Math.random()},
+      {field: 'actualProfit', title: '实际总利润$', align: 'center', key: Math.random()},
+      {field: 'actualProfitRatio', title: '实际利润率', align: 'center', key: Math.random()},
+      {field: 'shopProfitR', title: '对比上月利润$', align: 'center', key: Math.random()},
+      {field: 'lastShopProfitRatio', title: '对比上月增长', align: 'center', key: Math.random()},
+  ],
+  Allegro: [
+      {field: 'shopNumber', title: '店铺序号', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'shopName', title: '店铺名称', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'staffName', title: '负责人', align: 'center', key: Math.random(), fixed: true},
+      {field: 'sumMonth', title: '统计年月', align: 'center', key: Math.random(), fixed: true},
+      {field: 'orderTotal', title: '店铺成交总额$', align: 'center', key: Math.random()},
+      {field: 'maintainOrderTotal', title: '维护成交总额$', align: 'center', key: Math.random()},
+      {field: 'refundTotal', title: '店铺退款总额$', align: 'center', key: Math.random(), color: true},
+      {field: 'actualOrderTotal', title: '实际成交总额$', align: 'center', key: Math.random()},
+      {field: 'refundRatio', title: '退款率', align: 'center', key: Math.random(), color: true},
+      {field: 'purchaseCost', title: '货物成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'shipping', title: '运费$', align: 'center', key: Math.random(), color: true},
+      {field: 'packageFee', title: '包装材料费$', align: 'center', key: Math.random(), color: true},
+      {field: 'commissionFee', title: '佣金$', align: 'center', key: Math.random(), color: true},
+      {field: 'adCost', title: '广告花费$', align: 'center', key: Math.random(), color: true}, // 'Allegro','Lazada','Mercado' * -1
+      {field: 'rebateCommission', title: '返还税费$', align: 'center', key: Math.random(), color: true}, // 'Allegro','Lazada' * -1
+      {field: 'featureFee', title: '订阅费$', align: 'center', key: Math.random(), color: true}, // 'Allegro','Lazada' * -1
+      {field: 'otherFee', title: '其他费用$', align: 'center', key: Math.random(), color: true}, // 'Allegro','Lazada' * -1
+      {field: 'refundCost', title: '退款成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'maintainProfit', title: '维护总利润$', align: 'center', key: Math.random()},
+      {field: 'shopProfit', title: '店铺总利润$', align: 'center', key: Math.random()},
+      {field: 'profitRatio', title: '店铺利润率', align: 'center', key: Math.random()},
+      {field: 'actualProfit', title: '实际总利润$', align: 'center', key: Math.random()},
+      {field: 'actualProfitRatio', title: '实际利润率', align: 'center', key: Math.random()},
+      {field: 'shopProfitR', title: '对比上月利润$', align: 'center', key: Math.random()},
+      {field: 'lastShopProfitRatio', title: '对比上月增长', align: 'center', key: Math.random()},
+  ],
+  Amazon: [
+      {field: 'shopNumber', title: '店铺序号', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'shopName', title: '店铺名称', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'staffName', title: '负责人', align: 'center', key: Math.random(), fixed: true},
+      {field: 'sumTime', title: '统计年月', align: 'center', key: Math.random(), fixed: true},
+      {field: 'orderTotal', title: '店铺成交总额$', align: 'center', key: Math.random()},
+      {field: 'refundTotal', title: '店铺退款总额$', align: 'center', key: Math.random(), color: true},
+      {field: 'actualOrderTotal', title: '实际成交总额$', align: 'center', key: Math.random()},
+      {field: 'refundRatio', title: '退款率', align: 'center', key: Math.random(), color: true},
+      {field: 'purchaseCost', title: '货物成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'shippingFee', title: '运费$', align: 'center', key: Math.random(), color: true},
+      {field: 'storageFee', title: '仓储费', align: 'center', key: Math.random(), color: true},
+      {field: 'adCost', title: '广告成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'adSale', title: '广告销售$', align: 'center', key: Math.random()},
+      {field: 'adCostRatio', title: '广告花费投资比$', align: 'center', key: Math.random()},
+      {field: 'packageFee', title: '包装材料费$', align: 'center', key: Math.random(), color: true},
+      {field: 'commissionFee', title: '佣金$', align: 'center', key: Math.random(), color: true},
+      {field: 'rmaRefaCost', title: '退件重发成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'rmaRefaShipping', title: '退件重发运费$', align: 'center', key: Math.random(), color: true},
+      {field: 'manualProcessFee', title: '人工处理费', align: 'center', key: Math.random(), color: true},
+      {field: 'refundCost', title: '退款成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'shopProfit', title: '店铺总利润$', align: 'center', key: Math.random()},
+      {field: 'shopProfitRatio', title: '店铺利润率', align: 'center', key: Math.random()},
+      {field: 'actualProfit', title: '实际总利润$', align: 'center', key: Math.random()},
+      {field: 'actualProfitRatio', title: '实际利润率', align: 'center', key: Math.random()},
+      {field: 'shopProfitR', title: '对比上月利润$', align: 'center', key: Math.random()},
+      {field: 'lastShopProfitRatio', title: '对比上月增长', align: 'center', key: Math.random()},
+  ],
+  B2w: [
+      {field: 'shopNumber', title: '店铺序号', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'shopName', title: '店铺名称', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'staffName', title: '负责人', align: 'center', key: Math.random(), fixed: true},
+      {field: 'sumMonth', title: '统计年月', align: 'center', key: Math.random(), fixed: true},
+      {field: 'orderTotal', title: '店铺成交总额$', align: 'center', key: Math.random()},
+      {field: 'maintainOrderTotal', title: '维护业绩', align: 'center', key: Math.random()},
+      {field: 'refundTotal', title: '店铺退款总额$', align: 'center', key: Math.random(), color: true},
+      {field: 'shipping', title: '运费成本', align: 'center', key: Math.random(), color: true},
+      {field: 'clearanceTotal', title: '清货销售额$', align: 'center', key: Math.random()},
+      {field: 'purchaseCost', title: '货物成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'firstCarrierFreight', title: '头程', align: 'center', key: Math.random()},
+      {field: 'packageFee', title: '包装材料费$', align: 'center', key: Math.random(), color: true},
+      {field: 'commissionFee', title: '佣金$', align: 'center', key: Math.random(), color: true},
+      {field: 'manualProcessFee', title: '人工处理费', align: 'center', key: Math.random(), color: true},
+      {field: 'adCost', title: '广告花费', align: 'center', key: Math.random(), color: true},
+      {field: 'refundCost', title: '退款成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'lastShopProfit', title: '上月利润', align: 'center', key: Math.random()},
+      {field: 'lastShopProfitRatio', title: '上月利润率', align: 'center', key: Math.random()},
+      {field: 'maintainProfit', title: '维护利润', align: 'center', key: Math.random()},
+      {field: 'shopProfit', title: '店铺总利润$', align: 'center', key: Math.random()},
+      {field: 'profitRatio', title: '店铺利润率', align: 'center', key: Math.random()},
+      {field: 'actualProfitRatio', title: '实际利润率', align: 'center', key: Math.random()},
+  ],
+  Joom: [
+      {field: 'shopNumber', title: '店铺序号', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'shopName', title: '店铺名称', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'staffName', title: '负责人', align: 'center', key: Math.random(), fixed: true},
+      {field: 'sumTime', title: '统计年月', align: 'center', key: Math.random(), fixed: true},
+      {field: 'orderTotal', title: '店铺成交总额$', align: 'center', key: Math.random()},
+      {field: 'refundTotal', title: '店铺退款总额$', align: 'center', key: Math.random(), color: true},
+      {field: 'actualOrderTotal', title: '实际成交总额$', align: 'center', key: Math.random()},
+      {field: 'clearanceTotal', title: '清货销售额$', align: 'center', key: Math.random()},
+      {field: 'refundRatio', title: '退款率', align: 'center', key: Math.random(), color: true},
+      {field: 'purchaseCost', title: '货物成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'shippingFee', title: '运费$', align: 'center', key: Math.random(), color: true},
+      {field: 'discountTotal', title: '折扣$', align: 'center', key: Math.random()},
+      {field: 'packageFee', title: '包装材料费$', align: 'center', key: Math.random(), color: true},
+      {field: 'refundCost', title: '退款成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'shopProfit', title: '店铺总利润$', align: 'center', key: Math.random()},
+      {field: 'shopProfitRatio', title: '店铺利润率', align: 'center', key: Math.random()},
+      {field: 'actualProfit', title: '实际总利润$', align: 'center', key: Math.random()},
+      {field: 'actualProfitRatio', title: '实际利润率', align: 'center', key: Math.random()},
+      {field: 'shopProfitR', title: '对比上月利润$', align: 'center', key: Math.random()},
+      {field: 'lastShopProfitRatio', title: '对比上月增长', align: 'center', key: Math.random()}
+  ],
+  Lazada: [
+      {field: 'shopNumber', title: '店铺序号', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'shopName', title: '店铺名称', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'staffName', title: '负责人', align: 'center', key: Math.random(), fixed: true},
+      {field: 'sumMonth', title: '统计年月', align: 'center', key: Math.random(), fixed: true},
+      {field: 'orderTotal', title: '店铺成交总额$', align: 'center', key: Math.random()},
+      {field: 'refundTotal', title: '店铺退款总额$', align: 'center', key: Math.random(), color: true},
+      {field: 'actualOrderTotal', title: '实际成交总额$', align: 'center', key: Math.random()},
+      {field: 'refundRatio', title: '退款率', align: 'center', key: Math.random(), color: true},
+      {field: 'purchaseCost', title: '货物成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'shipping', title: '运费$', align: 'center', key: Math.random(), color: true},
+      {field: 'packageFee', title: '包装材料费$', align: 'center', key: Math.random(), color: true},
+      {field: 'commissionFee', title: '佣金$', align: 'center', key: Math.random(), color: true},
+      {field: 'adCost', title: '广告花费$', align: 'center', key: Math.random(), color: true},
+      {field: 'rebateCommission', title: '返还税费$', align: 'center', key: Math.random(), color: true},
+      {field: 'featureFee', title: '订阅费$', align: 'center', key: Math.random(), color: true},
+      {field: 'otherFee', title: '其他费用$', align: 'center', key: Math.random()},
+      {field: 'refundCost', title: '退款成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'shopProfit', title: '店铺总利润$', align: 'center', key: Math.random()},
+      {field: 'profitRatio', title: '店铺利润率', align: 'center', key: Math.random()},
+      {field: 'actualProfit', title: '实际总利润$', align: 'center', key: Math.random()},
+      {field: 'actualProfitRatio', title: '实际利润率', align: 'center', key: Math.random()},
+      {field: 'shopProfitR', title: '对比上月利润$', align: 'center', key: Math.random()},
+      {field: 'lastShopProfitRatio', title: '对比上月增长', align: 'center', key: Math.random()}
+  ],
+  Mall: [
+      {field: 'shopNumber', title: '店铺序号', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'shopName', title: '店铺名称', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'staffName', title: '负责人', align: 'center', key: Math.random(), fixed: true},
+      {field: 'sumTime', title: '统计年月', align: 'center', key: Math.random(), fixed: true},
+      {field: 'orderTotal', title: '店铺成交总额$', align: 'center', key: Math.random()},
+      {field: 'refundTotal', title: '店铺退款总额$', align: 'center', key: Math.random(), color: true},
+      {field: 'actualOrderTotal', title: '实际成交总额$', align: 'center', key: Math.random()},
+      {field: 'refundRatio', title: '退款率', align: 'center', key: Math.random(), color: true},
+      {field: 'purchaseCost', title: '货物成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'shipping', title: '运费$', align: 'center', key: Math.random(), color: true},
+      {field: 'packageFee', title: '包装材料费$', align: 'center', key: Math.random(), color: true},
+      {field: 'commissionFee', title: '佣金$', align: 'center', key: Math.random(), color: true},
+      {field: 'manualProcessFee', title: '人工处理费', align: 'center', key: Math.random(), color: true},
+      {field: 'refundCost', title: '退款成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'shopProfit', title: '店铺总利润$', align: 'center', key: Math.random()},
+      {field: 'profitRatio', title: '店铺利润率', align: 'center', key: Math.random()},
+      {field: 'actualProfitRatio', title: '实际利润率', align: 'center', key: Math.random()},
+      {field: 'shopProfitR', title: '对比上月利润$', align: 'center', key: Math.random()},
+      {field: 'lastShopProfitRatio', title: '对比上月增长', align: 'center', key: Math.random()}
+  ],
+  Mercado: [
+      {field: 'shopNumber', title: '店铺序号', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'shopName', title: '店铺名称', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'siteName', title: '站点', align: 'center', key: Math.random(), fixed: true, width: 110, tooltip: true},
+      {field: 'staffName', title: '负责人', align: 'center', key: Math.random(), fixed: true},
+      {field: 'sumMonth', title: '统计年月', align: 'center', key: Math.random(), fixed: true},
+      {field: 'orderTotal', title: '店铺成交总额$', align: 'center', key: Math.random()},
+      {field: 'maintainOrderTotal', title: '维护成交总额$', align: 'center', key: Math.random()},
+      {field: 'refundTotal', title: '店铺退款总额$', align: 'center', key: Math.random(), color: true},
+      {field: 'actualOrderTotal', title: '实际成交总额$', align: 'center', key: Math.random()},
+      {field: 'clearanceTotal', title: '清货销售额$', align: 'center', key: Math.random()},
+      {field: 'refundRatio', title: '退款率', align: 'center', key: Math.random(), color: true},
+      {field: 'purchaseCost', title: '货物成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'shipping', title: '运费$', align: 'center', key: Math.random(), color: true},
+      {field: 'packageFee', title: '包装材料费$', align: 'center', key: Math.random(), color: true},
+      {field: 'commissionFee', title: '佣金$', align: 'center', key: Math.random(), color: true},
+      {field: 'adCost', title: '广告花费$', align: 'center', key: Math.random(), color: true},
+      {field: 'refundCost', title: '退款成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'maintainProfit', title: '维护总利润$', align: 'center', key: Math.random()},
+      {field: 'shopProfit', title: '店铺总利润$', align: 'center', key: Math.random()},
+      {field: 'shopProfitRatio', title: '店铺利润率', align: 'center', key: Math.random()},
+      {field: 'actualProfit', title: '实际总利润$', align: 'center', key: Math.random()},
+      {field: 'actualProfitRatio', title: '实际利润率', align: 'center', key: Math.random()},
+      {field: 'shopProfitR', title: '对比上月利润$', align: 'center', key: Math.random()},
+      {field: 'lastShopProfitRatio', title: '对比上月增长', align: 'center', key: Math.random()}
+  ],
+  Shopee: [
+      {field: 'shopNumber', title: '店铺序号', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'staffName', title: '负责人', align: 'center', key: Math.random(), fixed: true},
+      {field: 'sumTime', title: '统计年月', align: 'center', key: Math.random(), fixed: true},
+      {field: 'shopTotal', title: '店铺成交总额$', align: 'center', key: Math.random()},
+      {field: 'refundTotal', title: '店铺退款总额$', align: 'center', key: Math.random(), color: true},
+      {field: 'realShopTotal', title: '实际成交总额$', align: 'center', key: Math.random()},
+      {field: 'refundRatio', title: '退款率', align: 'center', key: Math.random(), color: true},
+      {field: 'purchaseCost', title: '货物成本$', align: 'center', key: Math.random(), color: true},
+      {
+          field: 'creditCardTransactionFee',
+          title: '交易手续费$',
+          align: 'center',
+          key: Math.random(),
+          color: true
+      },
+      {field: 'packageFee', title: '包装材料费$', align: 'center', key: Math.random(), color: true},
+      {field: 'commissionFee', title: '佣金$', align: 'center', key: Math.random(), color: true},
+      {field: 'manualProcessFee', title: '人工处理费', align: 'center', key: Math.random(), color: true},
+      {field: 'refundCost', title: '退款成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'estimatedShippingFee', title: '固定运费$', align: 'center', key: Math.random(), color: true},
+      {field: 'shopProfit', title: '店铺总利润$', align: 'center', key: Math.random()},
+      {field: 'shopProfitRatio', title: '店铺利润率', align: 'center', key: Math.random()},
+      {field: 'actualProfit', title: '实际总利润$', align: 'center', key: Math.random()},
+      {field: 'actualProfitRatio', title: '实际利润率', align: 'center', key: Math.random()},
+      {field: 'shopProfitR', title: '对比上月利润$', align: 'center', key: Math.random()},
+      {field: 'lastShopProfitRatio', title: '对比上月增长', align: 'center', key: Math.random()}
+  ],
+  Wish: [
+      {field: 'shopNumber', title: '店铺序号', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'shopName', title: '店铺名称', align: 'center', key: Math.random(), fixed: true, width: 120, tooltip: true},
+      {field: 'staffName', title: '负责人', align: 'center', key: Math.random(), fixed: true},
+      {field: 'sumMonth', title: '统计年月', align: 'center', key: Math.random(), fixed: true},
+      {field: 'orderTotal', title: '店铺成交总额$', align: 'center', key: Math.random()},
+      {field: 'refundTotal', title: '店铺退款总额$', align: 'center', key: Math.random(), color: true},
+      {field: 'lostProfitOrderTotal', title: '实际利润成交额', align: 'center', key: Math.random()},
+      {field: 'actualOrderTotal', title: '实际成交总额$', align: 'center', key: Math.random()},
+      {field: 'adCost', title: '广告花费总额$', align: 'center', key: Math.random(), color: true},
+      {field: 'adSale', title: '广告成交总额$', align: 'center', key: Math.random()},
+      {field: 'purchaseCost', title: '实际利润货物成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'shippingFee', title: '实际利润运费成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'packageFee', title: '实际利润包装成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'processingFee', title: '实际利润人工处理费$', align: 'center', key: Math.random(), color: true},
+      {field: 'clearanceTotal', title: '清货销售额$', align: 'center', key: Math.random()},
+      {field: 'refundRatio', title: '退款率', align: 'center', key: Math.random(), color: true},
+      {field: 'adCostRatio', title: '广告花费投资比$', align: 'center', key: Math.random()},
+      {field: 'refundCost', title: '退款成本$', align: 'center', key: Math.random(), color: true},
+      {field: 'infractionTotal', title: '罚款$', align: 'center', key: Math.random()},
+      {field: 'actualProfit', title: '店铺实际总利润', align: 'center', key: Math.random()},
+      {field: 'infractionTotal', title: '罚款$', align: 'center', key: Math.random()},
+      {field: 'shopProfit', title: '店铺总利润$', align: 'center', key: Math.random()},
+      {field: 'shopProfitRatio', title: '店铺利润率', align: 'center', key: Math.random()},
+      {field: 'actualProfitRatio', title: '实际利润率', align: 'center', key: Math.random()},
+  ]
+} // 所有表头标题
+
+//转换日期格式
+// const dateFormat = (longTypeDate) => {
+//     var dateType = "";
+//     var date = new Date(Date.parse(longTypeDate.replace(/-/g, "/")));
+//     dateType = date.getFullYear() + "-" + getMonth(date); //yyyy-MM-dd格式日期
+//     return dateType;
+// }
+
+// //返回 01-12 的月份值
+// const getMonth = (date) => {
+//   var month = "";
+//   month = date.getMonth() + 1; //getMonth()得到的月份是0-11
+//   if (month < 10) {
+//       month = "0" + month;
+//   }
+//   return month;
+// }
+

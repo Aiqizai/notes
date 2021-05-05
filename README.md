@@ -33,4 +33,6 @@
 10、生成二维数组, 优化if/switch写法, Object.keys()
 
 11、transition组件，引用utils库，随机分组
+
+12、调整目录，新增两个数组之间的交集，vue directive
 ```

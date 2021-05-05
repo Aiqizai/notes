@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* 
+      日常需求中，常会遇到排序，且是对后台返回的id或value进行排序，稍不当心，就会出现把字符串按照数字排，导致顺序错误，
+      这时候通常的做法是将字符串转为数字再排，现在有了新的方法
+
+      出自《权威指南》第7版 11.7国际化API。
+
+      MDN链接：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator
+    */
+
+    /* 
+    重点在 Intl.Collator API:
+
+    第一个参数指定地区或地区数组，因为不是每个地区的数字都一致
+
+    第二个参数是一个可选的对象，其属性指定具体执行哪种比较
+
+    */
+
+    const baseArr = ['1', '2', '11', '15', '3', '4', '10'];
+    const numSort = new Intl.Collator('de', {numeric: 'true'}).compare;
+    // 默认排序
+    let res = baseArr.sort();  // ['1', '10', '11', '15', '2', '3', '4']
+    console.log(res);
+    // 将字符串排序改为数字排序
+    let res2 = baseArr.sort(numSort);  // ['1', '2', '3', '4', '10', '11', '15']
+    console.log(res2);
+  </script>
+</body>
+</html>
