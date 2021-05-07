@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Axios 请求重试示例（适配器）</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+</head>
+
+<body>
+  <h3>Axios 请求重试示例（适配器）</h3>
+  <button onclick="requestWithoutRetry()">请求失败不重试</button>
+  <button onclick="requestWithRetry()">请求失败重试</button>
+  <script>
+    function retryAdapterEnhancer (adapter, options) {
+      const { times = 0, delay = 300 } = options;
+
+      return async (config) => {
+        const { retryTimes = times, retryDelay = delay } = config;
+        let __retryCount = 0;
+        const request = async () => {
+          try {
+            return await adapter(config);
+          } catch (err) {
+            if (!retryTimes || __retryCount >= retryTimes) {
+              return Promise.reject(err);
+            }
+            __retryCount ++;
+            // 延时处理
+            const delay = new Promise(resolve => {
+              setTimeout(() => {
+                resolve();
+              }, retryDelay);
+            })
+            // 重新发起请求
+            return delay.then(() => {
+              return request();
+            })
+          }
+        } 
+        return request();
+      }
+    }
+
+    const http = axios.create({
+      baseURL: 'http://localhost:3000/',
+      adapter: retryAdapterEnhancer(axios.defaults.adapter, {
+        retryDelay: 1000
+      })
+    })
+
+    function requestWithoutRetry() {
+      http.get('/user');
+    }
+
+    function requestWithRetry() {
+      // retryTimes 重新请求次数
+      http.get('/user', { retryTimes: 2 })
+    }
+
+    
+  </script>
+</body>
+
+</html>

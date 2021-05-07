@@ -35,4 +35,6 @@
 11、transition组件，引用utils库，随机分组
 
 12、调整目录，新增两个数组之间的交集，vue directive
+
+13、axios系列（取消重复请求, 请求重试）
 ```
