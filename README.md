@@ -37,4 +37,6 @@
 12、调整目录，新增两个数组之间的交集，vue directive
 
 13、axios系列（取消重复请求, 请求重试）
+
+14、文本书写模式（css），vue transiton组件动画，keepalive
 ```
