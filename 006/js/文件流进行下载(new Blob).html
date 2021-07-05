@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!--    vue中如何使用文件流进行下载(new Blob)下载接口post body传入参数,返回二进制 如何实现下载    -->
+  <script>
+    export function handleDownFile(data, name = ' 自定义报表', type = 'xlsx') {
+      let url = window.URL.createObjectURL(new Blob([data]));
+      let link = document.createElement('a');
+      link.style.display = 'none';
+      link.href = url;
+      link.setAttribute(' download', `${name}.${type} `);
+      document.body.appendChild(link);
+      link.click();
+    }
+
+
+    function downloadData(data, filename, type) {
+      var file = new Blob(["\ufeff" + data], {
+        type: type
+      });
+      if (window.navigator.msSaveOrOpenBlob)
+        // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+      else {
+        // Others
+        var a = document.createElement("a"),
+        url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function () {
+          document.body.removeChild(a);
+          window.URL.revokeObjectURL(url);
+        }, 0);
+      }
+    }
+  </script>
+</body>
+
+</html>

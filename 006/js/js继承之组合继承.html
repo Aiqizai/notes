@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 实现原理：在子类的构造函数中，通过apply或者call的形式，调用父类构造函数，以实现继承。
+    function Parent(parent) {
+      this.parent = parent
+    }
+    Parent.prototype.getName = function () {
+      console.log(this.parent)
+    }
+
+    function Child(name, child) {
+      Parent.call(this, name)
+      this.child = child
+    }
+
+    let child1 = new Child('我是child1', '嗯啊')
+    console.log(child1) // {parent: '我是child1', child: '嗯啊'}
+    let child2 = new Child('我是child2', '哦哦')
+    console.log(child2) // {parent: '我是child2', child: '嗯啊'}
+    console.log(child1.getName) // 报错
+    console.log(child1 instanceof Parent) // false
+    console.log(child1 instanceof Child) // true
+
+    /* 
+      上述代码中，可以看到解决了原型链继承的两个缺点，但是这种方式也有其不足之处：
+
+      实例并不是父类的实例，仅仅只是子类的实例。
+      子类无法继承父类原型链上的方法。
+      每次生成子类实例都会执行一次父函数。 
+    */
+
+// --------------------------------------------------------------------------------------------------
+
+    // 组合继承（原型链继承和借用构造函数继承的组合）
+
+    //父类：人
+    function Person() {
+      this.head = '脑袋瓜子';
+      this.emotion = ['喜', '怒', '哀', '乐']; //人都有喜怒哀乐
+    }
+    //将 Person 类中需共享的方法放到 prototype 中，实现复用
+    Person.prototype.eat = function () {
+      console.log('吃吃喝喝');
+    }
+    Person.prototype.sleep = function () {
+      console.log('睡觉');
+    }
+    Person.prototype.run = function () {
+      console.log('快跑');
+    }
+    //子类：学生，继承了“人”这个类
+    function Student(studentID) {
+      this.studentID = studentID;
+      Person.call(this);
+    }
+
+    Student.prototype = new Person(); //此时 Student.prototype 中的 constructor 被重写了，会导致 stu1.constructor === Person
+    Student.prototype.constructor = Student; //将 Student 原型对象的 constructor 指针重新指向 Student 本身
+
+    var stu1 = new Student(1001);
+    console.log(stu1.emotion); //['喜', '怒', '哀', '乐']
+
+    stu1.emotion.push('愁');
+    console.log(stu1.emotion); //["喜", "怒", "哀", "乐", "愁"]
+
+    var stu2 = new Student(1002);
+    console.log(stu2.emotion); //["喜", "怒", "哀", "乐"]
+
+    stu1.eat(); //吃吃喝喝
+    stu2.run(); //快跑
+    console.log(stu1.constructor); //Student
+  </script>
+
+</body>
+
+</html>

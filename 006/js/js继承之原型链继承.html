@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Parent() {
+      this.parentDesc = '这是父级的描述'
+    }
+    Parent.prototype.getDesc = function () {
+      return this.parentDesc
+    }
+    Parent.prototype.parentName = '父级'
+    Parent.prototype.obj = {
+      name: '父级的对象'
+    }
+
+    function Child() {}
+
+    Child.prototype = new Parent()  // 等价于Child.prototype = Parent.prototype
+    Child.prototype.constructor = Child   //将 Child 原型对象的 constructor 指针重新指向 Child 本身
+
+    let child1 = new Child()
+    // new的隐藏的操作 child.__proto__ === Child.prototype 
+    console.log(child1.getDesc()) // '这是父级的描述'
+    let child2 = new Child()
+    console.log(child2.getDesc()) // '这是父级的描述'
+
+    // 修该Parent的parentName属性值
+    child1.parentName = '父级被改名了吗'
+    child1.obj.name = '把name值改了'
+
+    console.log(child2.parentName) // '父级'
+    console.log(child2.obj.name) // '把name值改了'
+
+    // 本质是将一个对象的原型对象指向另一个对象的实例对象
+    /* 
+      优点：多个实例可以共享原型链上定义的属性和方法。
+      缺点：每个实例对引用类型的属性的修改也会被其他实例共享，这不是我们想看到的。
+      缺点：子类在实例化的时候不能给父类构造函数传参。
+    */
+
+    // 另一个例子
+    // 从一个函数里创建一个对象o，它自身拥有属性a和b的：
+    function f() {
+      this.a = 1;
+      this.b = 2;
+    }
+    let o = new f(); // {a: 1, b: 2}
+
+    // 在f函数的原型上定义属性
+    f.prototype.b = 3;
+    f.prototype.c = 4;
+    console.log(o.b) // 2
+    console.log(o.c) // 4
+
+    // 为啥是2？ 因为本身f中是存在b属性的，那原型上也有b属性呀，但原型上不会被访问到，因为查找的顺序是先在自身上查找然后才往原型上找，所以取2，而不是取3
+    //  为啥是4？c不是o的自身属性，所以往原型上找，原型上有c属性，值为4
+    
+    // 简单来说现在自身上找，没有则往__proto__上找，没有继续往constructor上的prototype上找，直到Object上都没有即undefined，这就是原型链
+
+
+  </script>
+</body>
+
+</html>

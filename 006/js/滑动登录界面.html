@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background-color: #ededed;
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .flexCenter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .main {
+      position: relative;
+      width: 900px;
+      height: 550px;
+      margin: auto;
+      overflow: hidden;
+      border: 1px solid #ccc;
+    }
+
+    .switchWrapper {
+      position: absolute;
+      z-index: 99;
+      left: 0;
+      overflow: hidden;
+      width: 32%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.4);
+      transition: transform 1s ease-in-out;
+    }
+
+    /* 背景跟随滚动 */
+    .switchWrapper::after {
+      content: '';
+      display: block;
+      background-image: url('./pc.png');
+      background-size: 900px 550px;
+      background-position: top left;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      transition: all 1s ease-in-out;
+    }
+
+    .active .switchWrapper::after {
+      background-position: top right;
+    }
+
+    /* 背景跟随滚动  end*/
+
+    .btn {
+      position: absolute;
+      width: 90px;
+      height: 36px;
+      color: #fffffe;
+      background-color: #ff8906;
+      font-size: 15px;
+      border-radius: 30px;
+      cursor: pointer;
+      flex-wrap: wrap;
+      overflow: hidden;
+    }
+
+    .active .switchWrapper {
+      transform: translateX(calc(900px - 100%));
+    }
+
+    /* 垂直文字 */
+    .text {
+      width: 100%;
+      height: 100%;
+      transition: all 1s ease-in-out;
+      user-select: none;
+    }
+
+    .active .text:first-child {
+      margin-top: -100%;
+    }
+
+    /* 内容区 */
+    .outerBox {
+      position: absolute;
+      z-index: 9;
+      left: 32%;
+      overflow: hidden;
+      width: 68%;
+      height: 100%;
+      transition: all 1s ease-in-out;
+    }
+
+    .container {
+      width: 100%;
+      height: 100%;
+      background-color: #fffffe;
+    }
+
+    .active .outerBox {
+      transform: translateX(calc(-900px + 100%));
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <!--功能区-->
+    <div class="switchWrapper flexCenter">
+      <div class="btn flexCenter">
+        <div class="text flexCenter">去登录</div>
+        <div class="text flexCenter">去注册</div>
+      </div>
+    </div>
+
+    <!-- 表单区域 -->
+    <div class="outerBox">
+      <div class="container flexCenter">
+        <div class="signInBox">
+          <div class="tips">注册内容区</div>
+          <div>
+            <input type="text">
+          </div>
+          <div>
+            <input type="text">
+          </div>
+          <button class="regLog">注册</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const main = document.querySelector('.main');
+    const btn = document.querySelector('.btn');
+    const signInBox = document.querySelector('.signInBox');
+    const tips = document.querySelector('.tips');
+    const regLogBtn = document.querySelector('.regLog');
+    btn.onclick = () => {
+      if (main.className.indexOf('active') != -1) {
+        main.className = 'main';
+        setTimeout(() => {
+          tips.innerText = '注册内容区';
+          regLogBtn.innerText = '注册';
+        }, 500);
+      } else {
+        main.className = 'main active';
+        setTimeout(() => {
+          tips.innerText = '登录内容区';
+          regLogBtn.innerText = '登录';
+        }, 500);
+      }
+    };
+  </script>
+</body>
+
+</html>

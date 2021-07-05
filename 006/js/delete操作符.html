@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // ---------- 1. delete的返回值是什么  ----------
+    var a = {
+      p1: 1
+    }
+    console.log(delete a.p1); // true
+    console.log(delete a.p2); // true
+    console.log(delete window); // false
+
+    // 看出delete返回的是布尔值，如果删除成功返回真，这里包括删除一个不存在的属性。 删除失败返回false。
+
+
+    // ---------- 2. delete删除不存在的属性返回值是什么 ----------
+    // 从第一个demo看出，删除不存在的属性返回值也是true
+
+    // ---------- 3. 能不能删除原型上的属性 ----------
+    var a = {
+      p1: 10
+    }
+    a.__proto__ = {
+      p2: 20
+    }
+
+    console.log("a.p2:before ==> ", a.p2); // 20
+    console.log("delete ==> ", delete a.p2); // true
+    console.log("a.p2:after ==> ", a.p2); // 20
+
+    // 也许__proto__ 不太正经 搞个正经一点的
+    function Foo() {
+      this.name = "name"
+    }
+    Foo.prototype.age = 20;
+
+    var foo = new Foo();
+
+    console.log("foo.age:before ==> ", foo.age); // 20
+    console.log("delete ==> ", delete foo.age); // true
+    console.log("foo.age:after ==> ", foo.age); // 20
+
+    //  结论：无法删除原型上的属性
+
+    // ---------- 4. 能否删除变量 ----------
+    var a = 10;
+    console.log(delete a); // false
+    console.log("a", a); // 10
+    // 显然，是删除不掉，你换成函数，结果也是一样的。
+
+
+    // ---------- 5. 删除数组某个数据，数组长度会不会变 ----------
+    var arr = [10, 2, 16];
+    console.log("length:before ==> ", arr.length); // 3
+    console.log("delete ==> ", delete arr[1]); // true
+    console.log("length:after ==> ", arr.length); // 3
+    console.log("arr ==> ", arr); // [10, empty, 16]
+
+    // delete删除数据的某个数据，并不会导致数组的长度变短。 对应的数据的值会变成 empty, 不是undefined或者null。 是未初始化的意思，你用 new Array(2) 会得到 [empty × 2]。 都是一个意思。
+
+    var arr = [0];
+    arr[10] = 10;
+
+    arr.forEach(v => console.log(v)) // 0, 10
+
+    for (let p in arr) {
+      console.log(arr[p]); // 0, 10
+    }
+
+    for (let p of arr) {
+      console.log(arr[p]); // 0, undefined * 9, 10
+    }
+
+    // forEach 和 in 并不会对未初始化的值进行任何操作。具体参见：https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach#sparsearray
+
+
+    // ---------- 6. 哪些属性不能被删除 ----------
+
+    // ---------- 6.1 var const let等变量 , 全局变量。----------
+    delete window // false
+    var a;
+    delete a; // false
+
+    // 有意思的delete this
+    function a() {
+      this.a = 333;
+      console.log("delete this:", delete this); // true
+      console.log("a", this.a, this); // 333, {a:333}
+    }
+    a.call({});
+
+    // ---------- 6.2 数据属性configurable为false的属性 ----------
+    // ES5严格模式中delete configuable为false的对象时会直接抛异常
+
+    // 内置document, location等
+    Object.getOwnPropertyDescriptor(window, "document"); // { configurable: false }
+    console.log("delete", delete window.document); // false
+    console.log("delete", delete window.location); // false
+
+    // 数组长度
+    var arr = [];
+    Object.getOwnPropertyDescriptor(arr, "length"); // { configurable: false }
+    console.log("delete", delete arr.length); // false
+
+    // 函数长度
+    function fn() {};
+    Object.getOwnPropertyDescriptor(fn, "length"); // { configurable: false }
+    console.log("delete", delete fn.length); // false
+
+
+    // 各种内置原型
+    Object.getOwnPropertyDescriptor(Object, "prototype") // { configurable: false }
+    console.log("delete", delete Object.prototype); // false
+
+
+    // 内置Math的函数
+    Object.getOwnPropertyDescriptor(Math, "PI") // { configurable: false }
+    console.log("delete", delete Math.PI); // false
+
+
+    // https://www.cnblogs.com/snandy/archive/2013/03/06/2944815.html
+    // 有提到正则对象的属性（source、global、ignoreCase、multiline、lastIndex）delete 返回 false
+    // 实际测试结果，删除返回true，但是没删除掉
+    var reg = /.*/;
+    Object.getOwnPropertyDescriptor(reg, "source") // undefined
+    console.log("delete", delete reg.source); // true
+    console.log("reg.source", reg.source); // .*
+    console.log("reg prototype source", reg.__proto__source); // "(?:)
+
+    delete reg.lastIndex // false
+    delete reg.global // true
+    delete reg.ignoreCase // true
+    delete reg.multiline // true
+
+    //  ---------- 6.3. 原型上的属性 ---------- 
+
+    //  ---------- 6.4. 函数参数 ---------- 
+
+    function delP() {
+      console.log("delete", delete arguments); // false
+      console.log("arguments", arguments); //  0: 1
+    }
+    delP(1);
+
+    //  ---------- 6.5. 一些常量(NaN, Infinity, indefined) ---------- 
+    delete NaN; // false
+    delete Infinity; // false
+    delete undefined; // false
+
+    //  ---------- 6.6. 函数声明 ---------- 
+    function fn() {}
+    delete fn;
+    console.log(fn.toString()); // function fn() {}
+    
+  </script>
+</body>
+
+</html>

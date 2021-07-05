@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  ie、chrome、360：
+  页面加载时执行unload()；
+  刷新时先执行onbeforeload()，新页面即将替换旧页面时onunload()，最后unload();
+  关闭时执行onbeforeload()，再执行onunload().
+
+  firefox:
+  刷新时只执行onunload();
+  关闭时只执行onbeforeunload().
+
+  <script>
+    window.onload() {
+      window.onunload = function () {
+        if (flag) {
+          console.log('关闭操作');
+        } else {
+          console.log('刷新操作');
+        }
+      };
+
+      window.onbeforeunload = function () {
+        if (!flag) {
+          console.log('关闭操作');
+        } else {
+          console.log('刷新操作');
+        }
+      }
+    }
+
+    window.onload = function () {
+      alert('你好， 欢迎光临'); //各浏览器均正常弹出
+    }
+    window.onbeforeunload = function () {
+      alert('‘谢谢光临‘'); //IE 火狐浏览器提示
+      return ('‘谢谢光临‘'); //IE 谷歌浏览器提示（opera浏览器只有刷新时提示）
+    }
+    window.onunload = function () {
+      alert('‘再见‘'); //只有IE正常弹出
+      //chrome opera调试都执行该行，但“Blocked alert() during beforeunload.”
+      //firefox 刷新执行该行，弹出“NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) 　　　　[nsIDOMWindow.alert]”
+    }
+
+    // 虽然这种功能不再使用， 但是还是知道的好……
+
+    // 在chrome下， 无法捕捉到onunload() 和onbeforeunload() 事件的情况。
+
+    $(window).on('beforeunload', function () {
+      return 'Your own message goes here...';
+    });
+
+    // 把这段代码， 放到你写的function中， 就可以了， 监听到， chrome下关闭和刷新的事件了！！
+  </script>
+</body>
+
+</html>

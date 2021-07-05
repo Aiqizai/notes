@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    场景： 将file对象转换为blob类型并作为请求参数传给后端。
+
+    <script>
+        // 导入
+        const handleImport = type => {
+          const api = "/testimport"
+          setLoading(true);
+          // TODO: 传输文件
+          const reader = new FileReader();
+          reader.readAsArrayBuffer(fileId);
+          // 读取完成时的回调
+          reader.onload = function(e) {
+            const excelFile = e.target.result;
+            let formData = new FormData();
+            formData.append('excelFile', new Blob([excelFile]));
+            axios({
+              method: 'post',
+              url: api,
+              data: formData,
+              headers: {
+                'Content-Type': 'multipart/form-data'  //  关键
+              }
+            }).then(res => {
+              setLoading(false);
+              setStep(2);
+              if (res.statusCode === '200') {
+                setSuccess(true);
+              } else {
+                setSuccess(false);
+                setErrMsg(res.statusInfo);
+              }
+            })
+          }
+        }
+    </script>
+</body>
+</html>
