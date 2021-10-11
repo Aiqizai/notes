@@ -32,12 +32,12 @@
     // 2、字符串转数字
 
     //普通写法 
-    let total = parseInt('453');
-    let average = parseFloat('42.6');
+    var total = parseInt('453');
+    var average = parseFloat('42.6');
 
     //简写 
-    let total = +'453';
-    let average = +'42.6';
+    var total = +'453';
+    var average = +'42.6';
 
     // 3、多次重复一个字符串
 
@@ -83,7 +83,15 @@
     dog2 = pets.find(pet => pet.type === 'Dog' && pet.name === 'Tommy');
     console.log('dog2 ==> ', dog2);
 
-    // 6、
+    // 6、且运算
+    let flag = 'ABC';
+    if (!['EFG', 'YUT', 'OPI'].includes(flag)) {
+      console.log('includes ==>', '进来了');
+    }
+
+    if (flag !== 'EFG' && flag !== 'YUT' && flag !== 'OPI') {
+      console.log('进来了');
+    }
 
   </script>
 </body>

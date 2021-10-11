@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>吃豆豆</title>
+</head>
+
+<style>
+  /* up */
+  @-webkit-keyframes up {
+
+    0%,
+    100% {
+      transform: rotate(0);
+    }
+
+    50% {
+      transform: rotate(-30deg);
+    }
+  }
+
+  /*咬合张开的角度*/
+
+
+  @-moz-keyframes up {
+
+    0%,
+    100% {
+      transform: rotate(0);
+    }
+
+    50% {
+      transform: rotate(-30deg);
+    }
+  }
+
+  @-o-keyframes up {
+
+    0%,
+    100% {
+      transform: rotate(0);
+    }
+
+    50% {
+      transform: rotate(-30deg);
+    }
+  }
+
+  @keyframes up {
+
+    0%,
+    100% {
+      transform: rotate(0);
+    }
+
+    50% {
+      transform: rotate(-30deg);
+    }
+  }
+
+  /* down */
+  @-webkit-keyframes down {
+
+    0%,
+    100% {
+      transform: rotate(0);
+    }
+
+    50% {
+      transform: rotate(30deg);
+    }
+  }
+
+  @-moz-keyframes down {
+
+    0%,
+    100% {
+      transform: rotate(0);
+    }
+
+    50% {
+      transform: rotate(30deg);
+    }
+  }
+
+  @-o-keyframes down {
+
+    0%,
+    100% {
+      transform: rotate(0);
+    }
+
+    50% {
+      transform: rotate(30deg);
+    }
+  }
+
+  @keyframes down {
+
+    0%,
+    100% {
+      transform: rotate(0);
+    }
+
+    50% {
+      transform: rotate(30deg);
+    }
+  }
+
+  /* r-to-l */
+  @-webkit-keyframes r-to-l {
+    100% {
+      margin-left: -1px;
+    }
+  }
+
+  @-moz-keyframes r-to-l {
+    100% {
+      margin-left: -1px;
+    }
+  }
+
+  @-o-keyframes r-to-l {
+    100% {
+      margin-left: -1px;
+    }
+  }
+
+  @keyframes r-to-l {
+    100% {
+      margin-left: -1px;
+    }
+  }
+
+  body {
+    background: #d44747;
+    overflow: hidden;
+    margin: 0;
+  }
+
+  body .pacman:before,
+  body .pacman:after {
+    content: '';
+    position: absolute;
+    background: #fb07ff;
+    width: 100px;
+    height: 50px;
+    /*保持居中位置*/
+    left: 50%;
+    top: 50%;
+    /*保持居中位置*/
+    margin-left: -50px;
+    margin-top: -50px;
+    /*上半圆效果*/
+    border-radius: 50px 50px 0 0;
+    /*动画*/
+    -webkit-animation: up 0.6s infinite;
+    /* 0.6s 动画的速度，越大越慢  infinite --- 无限循环 */
+    -moz-animation: up 0.6s infinite;
+    -o-animation: up 0.6s infinite;
+    animation: up 0.6s infinite;
+  }
+
+  body .pacman:after {
+    /*为了使两个半圆咬合时不出现缝隙*/
+    margin-top: -1px;
+    /*下半圆效果*/
+    border-radius: 0 0 50px 50px;
+    -webkit-animation: down 0.6s infinite;
+    -moz-animation: down 0.6s infinite;
+    -o-animation: down 0.6s infinite;
+    animation: down 0.6s infinite;
+  }
+
+  body .dot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    margin-top: -5px;
+    margin-left: 30px;
+    border-radius: 50%;
+    background: #02ec2a;
+    /*层级关系 越大越在上层*/
+    z-index: -1;
+    /*实际上只有一个圆点，用了box-shadow的阴影属性。*/
+    box-shadow: 30px 0 0 #02ec2a, 60px 0 0 #02ec2a, 90px 0 0 #02ec2a, 120px 0 0 #02ec2a, 150px 0 0 #02ec2a;
+    /*
+   1、box-shadow: offset-x | offset-y | blur-radius | spread-radius | color ()
+    （1）<offset-x> <offset-y>: 这是头两个 <length>值，用来设置阴影偏移量。<offset-x> 设置水平偏移量，如果是负值则阴影位于元素左边。 <offset-y> 设置垂直偏移量，如果是负值则阴影位于元素上面。可用单位请查看 <length>。如果两者都是0，那么阴影位于元素后面。这时如果设置了 <blur-radius> 或 <spread-radius> 则有模糊效果。
+    （2）<blur-radius>: 这是第三个 <length> 值。值越大，模糊面积越大，阴影就越大越淡。 不能为负值。默认为0，此时阴影边缘锐利。
+    ※（3）<spread-radius> : 这是第四个 <length> 值。取正值时，阴影扩大；取负值时，阴影收缩。默认为0，此时阴影与元素同样大。（默认为 0 ，所以这里只设置了前3个值）
+	（4）<color> : 相关事项查看 <color> 。如果没有指定，则由浏览器决定——通常是color的值，不过目前Safari取透明。
+
+   2、这里用的border-style:type(类型)是outset而不是inset(定义 3D outset 边框。其效果取决于 border-color 的值);
+
+  */
+    -webkit-animation: r-to-l 0.6s infinite;
+    -moz-animation: r-to-l 0.6s infinite;
+    -o-animation: r-to-l 0.6s infinite;
+    animation: r-to-l 0.6s infinite;
+  }
+</style>
+
+<body>
+
+  <div class="demo">
+    <div class="pacman"></div>
+    <div class="dot"></div>
+  </div>
+
+</body>
+
+</html>

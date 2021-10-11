@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let arr = [{
+        value: "波兰仓库03",
+        key: 1406920626937065500,
+        platform: "Mbb"
+      },
+      {
+        value: "工业城仓",
+        key: 1430742236437651500,
+        platform: "Hx"
+      },
+      {
+        value: "安大略仓",
+        key: 1430742236580257800,
+        platform: "Hx"
+      },
+      {
+        value: "富勒顿仓",
+        key: 1430742236643172400,
+        platform: "Hx"
+      },
+      {
+        value: "LAX99",
+        key: 1431153262349910000,
+        platform: "Aybases"
+      },
+      {
+        value: "TESTO1",
+        key: 1431153262404436000,
+        platform: "Aybases"
+      },
+      {
+        value: "洛杉矶1号仓",
+        key: 1432520453796274200,
+        platform: "Aybases"
+      },
+      {
+        value: "洛杉矶2号仓",
+        key: 1432520453817245700,
+        platform: "Aybases"
+      },
+    ];
+
+    let choseValue = 'USA';
+
+    // 触发下单人/团队下拉框
+    let fun1 = function changeSubscriber(val) {
+        if (val.length === 0) {
+          this.searchKey = [];
+          this.keys = [];
+        }
+        // console.log(val,'当前选中的值');
+        let choseValue = val.join();
+        // let keys = [];
+        if (['USA', 'Europe'].includes(choseValue)) {
+          for (let i = 0; i < this.subscriberList.length; i++) {
+            let ele = this.subscriberList[i];
+            if (choseValue === 'USA') {
+              if (['Mbb', 'Hx'].includes(ele.platform)) {
+                this.keys.push(ele.key);
+              }
+            } else if (choseValue === 'Europe') {
+              if (['Mbb', 'Aybases'].includes(ele.platform)) {
+                this.keys.push(ele.key);
+              }
+            }
+          }
+        } else {
+          this.searchKey = val;
+        }
+
+        // console.log(this.keys,'keys')
+    }
+
+    let fun2 = function changeSubscriber(val) {
+      let choseValue = val.join();
+      let _map = {
+        USA: ['Mbb', 'Hx'],
+        Europe: ['Mbb', 'Aybases']
+      }
+      // Object.key(_map)  返回可枚举属性组成的数组, ['USA', 'Europe']
+      if (Object.keys(_map).includes(choseValue)) {
+        this.keys = this.subscriberList.filter((v) => {
+          // 返回为真的这一项
+          return _map[choseValue].includes(v.platform);
+        })
+        // return
+      }
+      this.searchKey = choseValue ? val : [];
+      // 没值的时候是false，取反就是true
+      if (!choseValue) {
+        this.keys = [];
+      }
+    }
+
+    
+  </script>
+</body>
+
+</html>

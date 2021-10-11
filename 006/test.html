@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- <div>{{hours}}</div>
+    <button @click="hours++">hours add</button> -->
+  </div>
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> -->
+  <script>
+    // new Vue({
+    //     el: '#app',
+    //     data: {
+    //         hours: 0
+    //     },
+    //     watch: {
+    //         hours: function(newValue, oldValue) {
+    //           console.log('oldValue ==> ', oldValue);
+    //           console.log('newValue ==> ', newValue);
+    //             if(newValue !== oldValue) {
+    //                 if(newValue < 4) {
+    //                     console.log('健康游戏时间')
+    //                 }else if(newValue < 6) {
+    //                     // alert(`你已经高强度网上冲浪${this.hours}`)
+    //                     alert(`你已经高强度网上冲浪${newValue}小时请注意休息`)
+    //                 }else {
+    //                     alert(`强制下线`)
+    //                 }
+    //             }
+    //         },
+    //         ccc() {
+
+    //         } 
+    //     }
+    // })
+
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+
+      this.run = function () {
+        console.log(this.name + '跑步');
+      }
+
+      console.log('this ==> ', this);
+    }
+
+    // 正确调用有参数
+    var p1 = new Person('小明', 18);
+    // p1.run();
+    var tmp = p1.run;
+    tmp();
+    // 正确调用无参数
+    var p2 = new Person
+
+    console.log('p1 == > ', p1); // Person
+    console.log('p2 == > ', p2); // Person
+
+    console.log('----------分割线------------');
+
+    // 错误调用
+    var p3 = Person(); // this 指向 window
+    console.log('p3 == > ', p3); // undefined
+
+
+
+    /**
+     * 构造函数
+     * @param {object}option
+     * @constructor
+     */
+    function Dog(option) {
+      // 属性
+      this.name = option.name;
+      this.age = option.age;
+      this.dogFriends = option.dogFriends;
+
+      // 行为
+      /*this.eat = function (someThing) {
+            console.log(this.name + '吃' + someThing);
+        };今天是面向对象的第4天，
+
+        this.run = function (someWhere) {
+            console.log(this.name + '跑' + someWhere);
+        }*/
+    }
+
+    Dog.prototype.eat = function (someThing) {
+      console.log(this.name + '吃' + someThing);
+    };
+
+    Dog.prototype.run = function (someWhere) {
+      console.log(this.name + '跑' + someWhere);
+    };
+
+    // 产生对象
+    var smallDog = new Dog({
+      name: '小花',
+      age: 1,
+      dogFriends: ['球球', '嘎嘎嘎']
+    });
+    var bigDog = new Dog({
+      name: '大花',
+      age: 11,
+      dogFriends: ['球球', '嘎嘎嘎', 'hh']
+    });
+
+    console.log(smallDog.eat === bigDog.eat);
+
+
+    function Cat(name, age) {
+        this.name = name,
+        this.age = age
+    }
+
+    Cat.prototype.color = '灰色'
+
+    Cat.prototype.sayName = function () {
+      console.log('花花');
+    }
+    var c1 = new Cat('花花', 1);
+
+    // 重写原型
+    Cat.prototype = {
+      constructor: Cat,
+      name: "球球",
+      age: 2,
+      sayName: function () {
+        console.log('name ==> ', this.name);
+      }
+    };
+    var c2 = new Cat();
+    
+    
+    c1.sayName();
+    c2.sayName();
+
+  </script>
+</body>
+
+</html>

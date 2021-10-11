@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: skyblue;
+    }
+
+    .fade-enter,
+    .fade-leave-to {
+      /*元素进入动画第一帧 类名*/
+      opacity: 0;
+      transform: translateX(300px);
+      width: 0;
+      height: 0;
+    }
+
+    .fade-enter-active,
+    .fade-leave-active {
+      /*元素进入整个过程中 类名*/
+      transition: all .5s linear;
+    }
+
+    .fade-enter-to,
+    .fade-leave {
+      /*元素进入动画最后一帧 类名*/
+      opacity: 1;
+      transform: translateX(0);
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <!--引入Vue三方库-->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <!--创建一个DOM元素-->
+  <div id="app">
+    <!--
+        被transition标签包裹的元素在其显示隐藏时,六个不同的阶段会自动添加6个class名
+        元素进入的第一帧  [transition name 属性]-enter
+        元素进入中        [transition name 属性]-enter-active
+        元素进入的最后一帧 [transition name 属性]-enter-to
+        元素离开的第一帧   [transition name 属性]-leave
+        元素离开中        [transition name 属性]-leave-active
+        元素离开的最后一帧 [transition name 属性]-leave-to
+        -->
+    <transition name="fade">
+      <div class="box" v-if="show"></div>
+    </transition>
+
+    <!-- <transition-group tag="ul" name="move">
+      <li v-for="todo in todos" :key="todo.id">
+        {{todo.text}}
+      </li>
+    </transition-group> -->
+    <button @click="show = !show">show/hidden</button>
+  </div>
+
+  <script>
+    // 实例化一个Vue对象
+    // Vue 构造函数接收配置对象
+    new Vue({
+      el: '#app', // el 指定页面中DOM元素,Vue就会以这个DOM为挂载对象
+      data: {
+        show: true,
+        todos: [{
+          id: 1,
+          text: 'todos'
+        }]
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,222 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background: #333;
+}
+
+.content{
+  width: 1155px;
+  height: 400px;
+  /* background: red; */
+  margin: 50px auto;
+}
+
+.content .box{
+  width: 265px;
+  height: 260px;
+  /* background: green; */
+  float: left;
+  margin: 0 60px;
+}
+
+.box-mission .icon{
+  width: 200px;
+  height: 200px;
+  display: block; /* 因为是行内元素所以要转成块级元素才能实现宽和高 */
+  background: url(../img/mission.png) 28px no-repeat;
+  margin: 0 auto;
+  transition: all 0.2s; /* 过渡 */
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+}
+
+.box-mission .icon:hover{
+  /* 放大1.2倍，旋转360° */
+  transform: scale(1.2) rotate(360deg);
+  -webkit-transform: scale(1.2) rotate(360deg);
+  -o-transform: scale(1.2) rotate(360deg);
+  -moz-transform: scale(1.2) rotate(360deg);
+}
+
+/* play */
+.box-play .icon{
+  width: 200px;
+  height: 200px;
+  display: block;
+  background: url(../img/play.png) 28px no-repeat;
+  margin: 0 auto;
+  transition: all 0.2s; /* 过渡 */
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+}
+
+.box-play .icon:hover{
+  /* 放大1.2倍，旋转360° */
+  transform: scale(1.2) rotate(360deg);
+  -webkit-transform: scale(1.2) rotate(360deg);
+  -o-transform: scale(1.2) rotate(360deg);
+  -moz-transform: scale(1.2) rotate(360deg);
+}
+
+/* touch */
+.box-touch .icon{
+  width: 200px;
+  height: 200px;
+  display: block;
+  background: url(../img/touch.png) 28px no-repeat;
+  margin: 0 auto;
+  transition: all 0.2s; /* 过渡 */
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+}
+
+.box-touch .icon:hover{
+  /* 放大1.2倍，旋转360° */
+  transform: scale(1.2) rotate(360deg);
+  -webkit-transform: scale(1.2) rotate(360deg);
+  -o-transform: scale(1.2) rotate(360deg);
+  -moz-transform: scale(1.2) rotate(360deg);
+}
+
+.box .button{
+  width: 156px;
+  height: 45px;
+  line-height: 45px;
+  display: block; /* 因为是行内元素所以要转成块级元素才能实现宽和高 */
+  background: /* pink */ url(../img/allow.png) no-repeat 125px center;
+  margin: 20px auto;
+  font-family: "微软雅黑";
+  font-size: 18px;
+  font-weight: bolder;
+  color: #2ecc71;
+  text-decoration: none;
+  padding-left: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  position: relative;
+}
+
+.box .button:hover{
+  background-position: 140px center;
+  border: 2px solid rgba(255, 255, 255, 1);
+}
+
+.box .line{
+  background-color: #fff; /* red */
+}
+
+/*
+  设置顶部的线条  从左向右过渡到按钮的上边框位置
+  高度不变 2px
+  宽度由0->180px(整个按钮的宽度：width，padding-left，border)
+
+  运用定位
+ */
+
+ .box .line-top{
+   width: 0px;
+   height: 2px;
+   display: block;
+   position: absolute; /* 绝对定位 */
+   top: -2px;
+   left: -100%;
+   transition: all 0.2s ease;
+   -webkit-transition: all 0.2s ease;
+   -o-transition: all 0.2s ease;
+   -moz-transition: all 0.2s ease;
+ }
+
+ .box .button:hover .line-top{
+   width: 180px;
+   left: -2px;
+ }
+
+ 
+/*
+  设置底部的线条  从右向左过渡到按钮的下边框位置
+  高度不变 2px
+  宽度由0->180px(整个按钮的宽度：width，padding-left，border)
+
+  运用定位
+ */
+
+ .box .line-bottom{
+  width: 0px; /* 100 */
+  height: 2px;
+  display: block;
+  position: absolute; /* 绝对定位 */
+  bottom: -2px;
+  right: -100%;
+  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+}
+
+.box .button:hover .line-bottom{
+  width: 180px;
+  right: -2px;
+}
+
+
+/*
+  设置左部的线条  从下向上过渡到按钮的左边框位置
+  宽度不变 2px
+  高度度由0->49px(整个按钮的高度：height，border)
+
+  运用定位
+ */
+
+ .box .line-left{
+  width: 2px; 
+  height: 0px;  /* 49 */
+  display: block;
+  position: absolute; /* 绝对定位 */
+  bottom: -100%;
+  left: -2px;
+  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+}
+
+.box .button:hover .line-left{
+  height: 49px;
+  bottom: -2px;
+}
+
+
+/*
+  设置右部的线条  从上向下过渡到按钮的右边框位置
+  宽度不变 2px
+  高度度由0->49px(整个按钮的高度：height，border)
+
+  运用定位
+ */
+
+ .box .line-right{
+  width: 2px; /* 2 */
+  height: 0px;
+  display: block;
+  position: absolute; /* 绝对定位 */
+  top: -100%;
+  right: -2px;
+  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+}
+
+.box .button:hover .line-right{
+  height: 49px;
+  top: -2px;
+}

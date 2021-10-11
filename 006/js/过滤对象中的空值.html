@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 过滤 "" undefined null NaN 和 false
+    function filterObject(object, filter) {
+      if (typeof filter !== 'function') {
+        filter = value => typeof value === 'number' || !!value;
+      }
+
+      return Object.keys(object).reduce((accumulator, key) => {
+        if (filter(object[key])) {
+          accumulator[key] = object[key];
+        }
+        return accumulator;
+      }, {})
+    }
+
+    let obj = {
+      a: null,
+      b: '1',
+      c: undefined,
+      d: '',
+      e: NaN,
+      f: false,
+      g: true,
+      h: 21
+    }
+
+    filterObject(obj, undefined)
+  </script>
+</body>
+</html>

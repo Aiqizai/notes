@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js开发技巧</title>
+</head>
+<body>
+  <script>
+    // ******************* String skill *******************
+
+    // 1、格式化金钱
+    var ThousandNum = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    var money = ThousandNum(20190214);
+    // money => "20,190,214"
+
+    // 2、生成随机ID
+    var RandomId = len => Math.random().toString(36).substr(3, len);
+    var id = RandomId(10);
+    // id => "jg7zpgiqva"
+
+    // 3、生成随机HEX色值
+    var RandomColor = () => "#" + Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0");
+    var color = RandomColor();
+    // color => "#f03665"
+
+    // ******************* String skill end *******************
+
+
+    // ******************* Number skill *******************
+
+    // 1、补零
+    var FillZero = (num, len) => num.toString().padStart(len, "0");
+    var num = FillZero(169, 5);
+    // num => "00169"
+
+    // 2、时间戳
+    var timestamp = +new Date("2019-02-14");
+    // timestamp => 1550102400000
+
+    // 3、判断奇偶
+    var OddEven = num => !!(num & 1) ? "odd" : "even";
+    var num = OddEven(2);
+    // num => "even"
+
+    // ******************* Number skill end*******************
+
+
+    // ******************* Boolean  skill *******************
+
+    // 1、是否为空数组
+    var arr = [];
+    var flag = Array.isArray(arr) && !arr.length;
+    // flag => true
+
+    // 2、是否为空对象
+    var obj = {};
+    var flag = DataType(obj, "object") && !Object.keys(obj).length;  // Object.keys(data).length !== 0
+    // flag => true
+
+    // 3、函数退出代替条件分支退出
+    if (flag) {
+        Func();
+        return false;
+    }
+    // 换成
+    if (flag) {
+        return Func();
+    }
+
+    // ******************* Boolean skill end*******************
+
+
+    // ******************* Array  skill *******************
+    // 1、去重数组
+    var arr = [...new Set([0, 1, 1, null, null])];
+    // arr => [0, 1, null]
+
+    // 2、混淆数组
+    var arr = [0, 1, 2, 3, 4, 5].slice().sort(() => Math.random() - .5);
+    // arr => [3, 4, 0, 5, 1, 2]
+
+    // 3、对象变量属性
+    var flag = false;
+    var obj = {
+        a: 0,
+        b: 1,
+        [flag ? "c" : "d"]: 2
+    };
+    // obj => { a: 0, b: 1, d: 2 }
+
+    // ******************* Array  skill end*******************
+
+    // ******************* Function  skill *******************
+    // 1、惰性载入函数
+    // 函数内判断分支较多较复杂时可大大节约资源开销
+    function Func() {
+        if (a === b) {
+            console.log("x");
+        } else {
+            console.log("y");
+        }
+    }
+    // 换成
+    function Func() {
+        if (a === b) {
+            Func = function() {
+                console.log("x");
+            }
+        } else {
+            Func = function() {
+                console.log("y");
+            }
+        }
+        return Func();
+      }
+
+    // 2、检测非空参数
+    function IsRequired() {
+        throw new Error("param is required");
+    }
+    function Func(name = IsRequired()) {
+        console.log("I Love " + name);
+    }
+    Func(); // "param is required"
+    Func("You"); // "I Love You"
+
+    // ******************* Function  skill end *******************
+
+  </script>
+</body>
+</html>

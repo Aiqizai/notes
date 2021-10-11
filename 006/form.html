@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form id="uploadExcel" method="post" enctype="multipart/form-data">
+    店铺负责人:&nbsp;&nbsp;<input id="staffId" name="staffId" data-options="editable:false" style="width: 100px" />
+    文件:&nbsp;&nbsp;<input type='file' name="file" id="excelFile" onchange="checkFile(this)" style="width:360px" />
+    <br><br>
+  </form>
+  <script>
+
+    /* 
+        &运算优化
+
+        不等于(!==) 就在inlcudes前加上 ( ! ) 就好
+
+    */
+
+    let flag = 'ABC';
+    if (['ABC nih', 'YUT', 'OPI'].includes(flag)) {
+      console.log('includes ==>', '进来了');
+    }
+
+    // 优化前
+
+    if (flag !== null && flag !== 'EFG' && flag !== 'YUT' && flag !== 'OPI') {
+      console.log('进来了');
+    }
+
+    // 优化后  这里的includes是字符串的方法，而不是数组的那个includes。
+    if (str !== null && !str.includes("EFG") && !str.includes("YUT") && !str.includes("OPI")) {
+
+    }
+
+    /* 
+        相同代码优化
+
+        例子
+    
+    */
+
+    // 优化前
+    if ([0, 1].includes(loadType)) {
+      this.energyData = res.data.energyItems;
+      this.energyArr = this.energyData.length > 9 ? this.energyData.slice(0, 9) : (this.energyArr = this.energyData)
+      this.getEnergyRank()
+    }
+    if ([0, 2].includes(loadType)) {
+      this.constData = res.data.energyItems;
+      this.costArr = this.constData.length > 9 ? this.constData.slice(0, 9) : (this.costArr = this.constData)
+      this.costRank()
+    }
+
+
+    // 优化后
+
+
+
+    function handle({thisKey,dataKey,thisArr}) {
+      this[thisKey] = res.data[dataKey];
+      this[thisArr] = this[thisKey].length > 9 ? this[thisKey].slice(0, 9) : (this[thisArr] = this[thisKey])
+    }
+
+
+    let key = {
+      1: {
+        dataKey: 'energyItems',
+        thisKey: 'energyData',
+        thisArr: 'energyArr'
+      },
+      2: {
+        dataKey: 'costItems',
+        thisKey: 'constData',
+        thisArr: 'costArr'
+      }
+    }
+
+    if ([0, 1].includes(loadType)) {
+      this.handle(key[1])
+      this.getEnergyRank()
+    }
+    if ([0, 2].includes(loadType)) {
+      this.handle(key[2])
+      this.costRank()
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="btn-create">生成正圆</div>
+
+  <script>
+    // 需求：
+        //1、点击按钮 “点击创建圆”，生成正圆
+        // 尺寸（100 ~ 200) 随机设置
+        // 位置（0 ~ 可视区尺寸） window.innerWidth /
+        //  window.innerHeight 随机设置
+        // 颜色 （rgba(0,0,0,0.6) ~ rgba(255,255,255,0.6)）随机设置
+
+        // 2、双击当前的圆标签，删除当前双击的圆标签 ondblclick
+    
+    // 步骤：
+    // 1.0 获取按钮标签
+    // var btnCreate = document.getElementsByClassName("btn-create")[0];
+    // 2.0 定义构造函数
+    // 设计一下对象
+    function Cricle(){ //函数作用域1
+        // this 是一个不折不扣的对象 例如工厂模式 "var obj= {} return obj" 这个对象
+        // 2.0.1 添加属性 按钮
+        this.btnCreate = document.getElementsByClassName("btn-create")[0];
+        // .0    添加属性 数组
+        this.elements = [];
+        // 2.0.2 添加方法 随机数
+        this.random = function(min,max){
+            // .0 返回一个指定范围的随机数
+            return Math.floor(Math.random()*(max-min)+min);
+        }
+        // 2.0.3 添加方法 创建元素
+        this.createElement =  function(){
+            // .0 创建的div标签
+            var divCreate =  document.createElement("div");
+            // .0 设置div的类名
+            divCreate.className = "circle";
+            // .0 设置div标签的尺寸
+            var size = this.random(100,200);
+            divCreate.style.width = size +"px";
+            divCreate.style.height = size +"px";
+
+            // .0 设置div标签的位置
+            var x = this.random(0,window.innerWidth);
+            var y = this.random(0,window.innerHeight);
+            divCreate.style.left = x +"px";
+            divCreate.style.top = y +"px";
+
+            // .0 设置div标签的颜色
+            var red = this.random(0,256);
+            var green = this.random(0,256);
+            var blue = this.random(0,256);
+            var bgcolor = "rgba("+red+","+green+","+blue+",0.8)"
+            divCreate.style.backgroundColor = bgcolor;
+            // .0 把div添加到body标签
+            document.body.appendChild(divCreate);
+            // .0 把div标签添加到数组elements中
+            this.elements.push(divCreate);
+        }
+        // 2.0.4 添加方法 删除元素
+        this.removeElement = function(element){
+            // .0 删除元素
+            // body是div的父元素 不是他的爷爷元素
+            // 没有弄明白嵌套的关系 只要是body标签的子元素即可
+            document.body.removeChild(element);
+        }
+        // 2.0.5 添加方法 事件绑定
+        this.addEvent = function(){ //函数作用域 1
+            // 此处的this 是 ? 构造函数产生的对象  Cricle {}
+            // 记录当前函数作用域的this对象 ，因为 createElement removeElement这些方法都在 this 对象身上，不在button标签上 
+            var _this = this ;
+            // .0 事件绑定按钮
+            this.btnCreate.onclick = function(){//函数作用域 2
+                // 此处的this 是 ? <button class></button>
+                // 问题：怎么在函数作用域2中使用函数作用域1的this ?
+                // .0 创建圆元素
+                _this.createElement();
+                // console.log( _this.elements )
+                _this.dblclick();
+
+            }
+        }
+        // .0 添加方法 给每个创建的div绑定双击事件
+        this.dblclick = function(){  //函数作用域 1
+            // .0 记录当前函数作用域的this对象 Circle{}
+            var _this = this;
+            // .0 有两种方式可以双击删除元素
+            // a. 给divCreate添加事件 ondblckick 事件 (推荐第一种)
+            // b. 给构造函数添加属性 elements 数组
+            for(var i = 0 ; i < this.elements.length ; i ++){
+                // .0 给每个div标签绑定双击事件
+                this.elements[i].ondblclick = function(){  //函数作用域 3
+                    // .0 找出事件调用者 this
+                    var target = this;
+                    // console.log("dblclick")
+                    _this.removeElement(target);
+                }
+            }
+        } 
+        // 2.0.6 添加方法 初始化
+        this.init = function(){
+            // .0 调用addEvent函数
+            this.addEvent();
+        }
+    
+    }
+
+   
+    // 3.0 创建构造函数的实例
+    var obj = new Cricle();
+    // obj.createElement();
+    // .0 调用实例对象(具体的)init函数
+    obj.init();
+</script>
+</body>
+</html>

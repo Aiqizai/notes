@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      /* 左右上下居中 */
+      justify-content: center;
+      align-items: center;
+      min-height: 100px;
+      background-color: #999;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(#3c9, #09f);
+      clip-path: circle(30% at right 70%);
+    }
+
+    body::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(#f90, #3c9);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="content">
+        <h1>静夜思</h1>
+        <h2>李白</h2>
+        <p>
+          床前明月光，疑是地上霜。
+          举头望明月，低头思故乡。
+        </p>
+        <a href="#">点赞</a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

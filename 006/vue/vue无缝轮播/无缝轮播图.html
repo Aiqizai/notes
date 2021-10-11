@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            margin: 20px auto;
+            width: 375px;
+            height: 157.5px;
+            border: 1px solid #555;
+            overflow: hidden;
+        }
+
+        .carousel {
+            width: 1000%;
+            height: 100%;
+            font-size: 0;
+        }
+
+        .carousel li {
+            display: inline-block;
+            width: 10%;
+            height: 100%;
+        }
+
+        .carousel li img {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .pages {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            position: absolute;
+            bottom: 0;
+            left: 80px;
+            width: 200px;
+            height: 20px;
+            background-color: rgba(7, 17, 27, .3);
+        }
+
+        .pages .dot {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .pages .dot.active {
+            background-color: #fc0;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <div class="carousel-wrapper">
+            <!-- 通过绑定style设置切换的动画 -->
+            <ul class="carousel" :style="{
+                transform: `translateX(${-10 * index}%)`,
+                transition: needTransition ?'all .5s linear' : 'none'
+            }" @transitionend="transitionEndHandle">
+                <!-- 图片换成自己的图片即可 -->
+                <li>
+                    <img src="./src/05.jpg">
+                </li>
+                <li>
+                    <img src="./src/01.jpg">
+                </li>
+                <li>
+                    <img src="./src/02.jpg">
+                </li>
+                <li>
+                    <img src="./src/03.jpg">
+                </li>
+                <li>
+                    <img src="./src/04.jpg">
+                </li>
+                <li>
+                    <img src="./src/05.jpg">
+                </li>
+                <li>
+                    <img src="./src/01.jpg">
+                </li>
+            </ul>
+            <!-- 小圆点 -->
+            <ul class="pages">
+                <!-- 绑定class -->
+                <li class="dot" :class="{active: index === 1||index === 6}"></li>
+                <li class="dot" :class="{active: index === 2}"></li>
+                <li class="dot" :class="{active: index === 3}"></li>
+                <li class="dot" :class="{active: index === 4}"></li>
+                <li class="dot" :class="{active: index === 5||index === 0}"></li>
+            </ul>
+        </div>
+        <div style="text-align: center;">
+            <!-- 上一张下一张的按钮 -->
+            <button @click="prevPic">prev</button>
+            <button @click="nextPic">next</button>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                index: 1,
+                needTransition: true
+            },
+            methods: {
+                // 下一张的事件
+                nextPic() {
+                    this.index++
+                    this.needTransition = true
+                },
+                // 上一张的事件
+                prevPic() {
+                    this.index--
+                    this.needTransition = true
+                },
+                // 动画事件
+                transitionEndHandle() {
+                    console.log('过渡结束了')
+                    // 最后一张没有动画效果的回到第一张
+                    if (this.index >= 6) {
+                        this.index = 1
+                        this.needTransition = false
+                    }
+
+                    // 第一张没有动画效果回到最后一张
+                    if (this.index <= 0) {
+                        this.index = 5
+                        this.needTransition = false
+                    }
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
