@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 方法一：es5冒泡排序法，去重arr
+    var arr = [{name: 'a',id: 1}, {name: 'a',id: 2}, {name: 'b',id: 3}, {name: 'c',id: 4},
+      {name: 'c',id: 6}, {name: 'b',id: 6}, {name: 'd',id: 7}];
+    function deWeight() {
+        for (var i = 0; i < arr.length - 1; i++) {
+            for (var j = i + 1; j < arr.length; j++) {
+                if (arr[i].name == arr[j].name) {
+                    arr.splice(j, 1);
+                    //因为数组长度减小1，所以直接 j++ 会漏掉一个元素，所以要 j--
+                    j--;
+                }
+            }
+        }
+        return arr;
+    }
+    var newArr = deWeight();
+    console.log('%c%s', 'color:red;', '方法一：es5,newArr', newArr);
+
+
+
+    // 方法二：es5新建数据双重循环，去重arr2
+    var arr2 = [{name: 'a',id: 1}, {name: 'a',id: 2}, {name: 'b',id: 3}, {name: 'c',id: 4},
+      {name: 'c',id: 6}, {name: 'b',id: 6}, {name: 'd',id: 7}];
+    var temp = [];
+    function deWeightTwo() {
+        arr2.forEach(function(a) {
+            var check = temp.every(function(b) {
+                return a.name !== b.name;
+            })
+            check ? temp.push(a) : ''
+        })
+        return temp;
+    }
+    var newArr2 = deWeightTwo();
+    console.log('%c%s', 'color:red;', '方法二：es5,newArr2', newArr2);
+
+
+
+    // 方法三：es6的Map()，去重arr3
+    var arr3 = [{name: 'a',id: 1}, {name: 'a',id: 2}, {name: 'b',id: 3}, {name: 'c',id: 4},
+       {name: 'c',id: 6}, {name: 'b',id: 6}, {name: 'd',id: 7}];
+    let deWeightThree = () => {
+        let map = new Map();
+        for (let item of arr3) {
+            if (!map.has(item.name)) {
+                map.set(item.name, item);
+            }
+        }
+        return [...map.values()];
+    }
+    let newArr3 = deWeightThree();
+    console.log('%c%s', 'color:red;', '方法三：es6,newArr3', newArr3);
+
+
+
+    // 方法四：es5，对象法去重arr4  reduce方法
+    var arr4 = [{name: 'a',id: 1}, {name: 'a',id: 2}, {name: 'b',id: 3}, {name: 'c',id: 4},
+      {name: 'c',id: 6}, {name: 'b',id: 6}, {name: 'd',id: 7}];
+    // array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
+    // (function(必选初始值或计算结束返回值, 必选当前元素, 可选索引, 可选原数组),可选函数初始值)
+    var obj = {};
+    function deWeightFour() {
+        arr4 = arr4.reduce(function(a, b) {
+            obj[b.name] ? '' : obj[b.name] = true && a.push(b);
+            return a;
+        }, [])
+        return arr4;
+    }
+    var newArr4 = deWeightFour();
+    console.log('%c%s', 'color:red;', '方法四：es5,newArr4', newArr4);
+
+  </script>
+</body>
+</html>

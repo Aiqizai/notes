@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var checkBoxList = [{
+        label: '1',
+        name: 'one'
+      },
+      {
+        label: '2',
+        name: 'two'
+      },
+      {
+        label: '3',
+        name: 'three'
+      }
+    ]
+
+    var checkListTwo = [
+      'one', 'two', 'three'
+    ]
+
+    // for循环
+    const names = []
+    for (let i = 0; i < this.checkBoxList.length; i++) {
+      for (let j = 0; j < this.checkListTwo.length; j++) {
+        if (this.checkBoxList[i].name == this.checkListTwo[j]) {
+          names.push(this.checkBoxList[i].name)
+        }
+      }
+    }
+
+    console.log('names ==> ', names); // ["one", "two", "three"]
+
+
+    // 优化
+    const names1 = this.checkBoxList.filter(item => this.checkListTwo.includes(item.name)).map(item => item.name)
+    console.log('names1 ==> ', names1); // ["one", "two", "three"]
+  </script>
+</body>
+
+</html>
