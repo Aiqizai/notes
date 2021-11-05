@@ -44,6 +44,15 @@
     var num = OddEven(2);
     // num => "even"
 
+    // 4、获得一组数的平均值
+    var average = (...args) => args.reduce((a, b) => a + b) / args.length
+    var average1 = average(1, 2, 3, 4, 5); // 3
+
+    // 5、获取两个整数之间的随机整数，该方法用于获取两个整数之间的随机整数
+
+    var random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+
+    var ran = random(1, 50);
     // ******************* Number skill end*******************
 
 
@@ -127,6 +136,16 @@
     Func("You"); // "I Love You"
 
     // ******************* Function  skill end *******************
+
+    // ******************* Date  skill *******************
+
+
+    // ******************* Date  skill end *******************
+    // 1、计算两个日期之间的间隔，该方法用于计算两个日期之间的间隔时间：
+
+    var dayDif = (date1, date2) => Math.ceil(Math.abs(date1.getTime() - date2.getTime()) / 86400000)
+
+    var day1 = dayDif(new Date("2021-11-3"), new Date("2022-2-1"))  // 90
 
   </script>
 </body>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 验证是否包含中文
+    function errIsIncludeChinese(str, tip) {
+      if (undefined !== str && str !== '' && /.*[\u4e00-\u9fa5]+.*$/.test(str)) {
+        console.log(tip + '不能包含中文')
+        return true
+      }
+      return false
+    }
+
+    var testStr = 'test001测'
+    var tips = '测试字符'
+
+    errIsIncludeChinese(testStr, tips)
+    </script>
+</body>
+</html>

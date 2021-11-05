@@ -10,3 +10,12 @@ export const isEmptyObject = obj => {
   }
   return true;
 };
+
+// 验证是否包含中文
+export const errIsIncludeChinese = (str, tip) => {
+  if (undefined !== str && str !== '' && /.*[\u4e00-\u9fa5]+.*$/.test(str)) {
+    console.log(tip + '不能包含中文')
+    return true
+  }
+  return false
+}
