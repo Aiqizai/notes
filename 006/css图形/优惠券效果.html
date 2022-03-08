@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: #f5f5f5;
+        }
+
+        .item {
+            width: 349px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            padding-left: 2px;
+            position: relative;
+        }
+        .item > div {
+            background: #fff;
+            border-radius: 5px;
+        }
+        .item .dot-left,
+        .item .dot-right {
+            display: block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #f5f5f5; /* 颜色与背景色一致即可 */
+            position: absolute;
+            z-index: 999;
+        }
+        .item .dot-left {
+            bottom: -6px;
+            left: -6px;
+        }
+        .item .dot-right {
+            bottom: -6px;
+            right: -6px;
+        }
+        .item .page-group {
+            position: absolute;
+            top: 10px;
+            left: -2px;
+            width: 100%;
+            max-width: 120px;
+        }
+        .item .page-group .fold-page {
+            display: block;
+            width: 2px;
+            height: 5px;
+            background: #db0113;
+            transform: skewY(-40deg);
+            position: absolute;
+            top: -1px;
+            left: 0;
+            z-index: 0;
+        }
+        .item .page-group .page {
+            position: absolute;
+            z-index: 1;
+            display: block;
+            padding: 0 10px;
+            height: 20px;
+            background: linear-gradient(137deg, #ff5b5b 0%, #db0113 100%);
+            border-radius: 0 20px 20px 0;
+            color: #fff;
+            text-align: center;
+            font-size: 12px;
+            overflow: hidden;
+        }
+        .item .content {
+            width: 100%;
+            height: 90px;
+            border-bottom: 1px dotted #f5f5f5;
+            position: relative;
+            z-index: 2;
+        }
+        .item .content .coupon-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 15px 0 20px;
+        }
+        .item .content .coupon-detail > div {
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .item .content .coupon-detail > div:first-child {
+            color: #e21422;
+            padding-top: 20px;
+            width: 30%;
+        }
+        .item .content .coupon-detail > div:first-child > span:first-child {
+            font-size: 28px;    
+        }
+        .item .content .coupon-detail > div:first-child > span:last-child {
+            font-size: 16px;
+            padding: 9px 0 0;
+        }
+        .item .content .coupon-detail > div:last-child > div {
+            color: #dd0d1f;
+            border: 1px solid #dd0d1f;
+            border-radius: 20px;
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 76px;
+            height: 22px;
+        }
+        .item .coupon-detail > div:nth-child(2) {
+            flex-direction: column;
+            padding-top: 5px;
+        }
+        .item .coupon-detail > div:nth-child(2) > div {
+            width: 100%;
+        }
+        .item .coupon-detail > div:nth-child(2) > div:first-child {
+            color: #333;
+            font-weight: bold;
+            font-size: 14px;
+            max-width: 140px;
+        }
+        .item .coupon-detail > div:nth-child(2) > div:nth-child(2) {
+            color: #333;
+            font-size: 14px;
+            max-width: 140px;
+        }
+        .item .coupon-detail > div:nth-child(2) > div:last-child {
+            font-size: 12px;
+            color: #adadad;
+            margin-top: 5px;
+        }
+        .item .coupon-detail > div:nth-child(2) > div:last-child > div {
+            transform: scale(0.8);
+            margin-left: -14px;
+        }
+        .item .footer {
+            color: #999;
+            font-size: 12px;
+            padding: 5px 15px 10px 15px;
+        }
+        .item .footer .footer-label {
+            line-height: 24px;
+        }
+        .item .footer .arrow {
+            width: 8.5px;
+            margin-left: 3px;
+        }
+        .item .footer .arrow-up {
+            transform: rotateX(180deg);
+        }
+        .item .footer .footer-desc {
+            color: #333;
+            max-width: 100%;
+            word-break: break-word;
+            overflow: hidden;
+        }
+        .item .ribbon {
+            width: 80px;
+            height: 20px;
+            background: #dd0d1f;
+            position: absolute;
+            right: -20px;
+            top: 10px;
+            transform: rotateZ(45deg);
+            text-align: center;
+            color: #fff;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="item">
+        <div>
+            <div class="content">
+                <div class="page-group">
+                    <i class="fold-page"></i>
+                    <span class="page">折扣券</span>
+                </div>
+                <i class="dot-left"></i>
+                <i class="dot-right"></i>
+                <div class="coupon-detail">
+                    <div>
+                        <span>8.8</span>
+                        <span>折</span>
+                    </div>
+                    <div>
+                        <div>好运来折扣券</div>
+                        <div>欢迎使用</div>
+                        <div>
+                            <div>有效期：2021.12.31前有效</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>立即使用</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+          <div class="footer-label">使用说明</div>
+          <div>请在指定门店兑换</div>
+        </div>
+        <div class="ribbon">已失效</div>
+    </div>
+</body>
+</html>

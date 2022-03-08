@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const rows = [{id: 1, value: '1'}, {id: 2, value: '2'}]
+
+        const form = document.createElement('form')
+        const my_input_id = document.createElement('input')
+        my_input_id.setAttribute('name', 'id')
+
+        let i = 0
+        const timer = setInterval(() => {
+          if (i < rows.length) {
+            const row = rows[i]
+            my_input_id.setAttribute('value', row.id)
+            form.append(my_input_id)
+            my_input_shopId.setAttribute('value', row.shop.id)
+            form.append(my_input_shopId)
+            // 提交表单
+
+            document.getElementById('copy_form').submit()
+            i++
+          } else {
+            form.remove()
+            window.clearInterval(timer)
+          }
+        }, 200)
+    </script>
+</body>
+</html>

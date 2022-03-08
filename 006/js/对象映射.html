@@ -58,7 +58,19 @@
 
         console.log(arr,'后1');
 
-        // 方法二  es6的map, 返回新数组，只含这个对象的属性的数组  
+        // 方法三  for循环push新对象到数组中
+        let resultArr = []
+        for (let i = 0; i < arr.length; i++) {
+            const obj = {
+                idNumber: arr[i].id,
+                name: arr[i].staff 
+            }
+            resultArr.push(obj)
+        }
+
+        console.log(resultArr, '后2');
+
+        // 方法二  es6的map, 返回新数组，只含这个对象的属性的数组  （for循环的简写）
         let result = arr1.map(item => {
             return {
                 idNumber: item.id,
@@ -66,7 +78,7 @@
             }
         })
 
-        console.log(result, '后2');
+        console.log(result, '后3');
 
     </script>
 </body>

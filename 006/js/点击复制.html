@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="textContent">
+        这是复制的文字
+    </div>
+    <script>
+        function copy (text) {
+            /* 
+                text: 已知要复制的内容
+                e: 某个节点下的内容 
+            */
+
+            /* 
+                console.log(e.nextSibling)
+                let copyTextarea = e.nextSibling.innerText
+                oInput.value = copyTextarea
+            */
+
+            // 创建input标签
+            let oInput = document.createElement('input')
+            // 传递的值
+            oInput.value = text
+            document.body.appendChild(oInput)
+            // 选择对象
+            oInput.select()
+            // console.log(oInput.value)
+            
+            // 执行浏览器复制命令
+            // 复制命令会将当前选中的内容复制到剪切板中
+            // 如这里构建的 input 标签
+
+            document.execCommand('copy')
+            alert('复制成功，可进行粘贴。')
+            // 复制成功后再将创建的标签移除
+            oInput.remove()
+            // document.body.removeChild(oInput);
+        }
+    </script>
+</body>
+</html>
